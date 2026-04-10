@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp_OOP_CourseProject.View.Controls
 {
-    partial class AdminControl
+    partial class AddExhibitControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SectionTabControl = new TabControl();
+            AddButton = new Button();
             SuspendLayout();
             // 
-            // SectionTabControl
+            // AddButton
             // 
-            SectionTabControl.Location = new Point(0, 0);
-            SectionTabControl.Name = "SectionTabControl";
-            SectionTabControl.SelectedIndex = 0;
-            SectionTabControl.Size = new Size(815, 490);
-            SectionTabControl.TabIndex = 0;
+            AddButton.Location = new Point(17, 399);
+            AddButton.Name = "AddButton";
+            AddButton.Size = new Size(94, 29);
+            AddButton.TabIndex = 0;
+            AddButton.Text = "Назад";
+            AddButton.UseVisualStyleBackColor = true;
             // 
-            // AdminControl
+            // AddUserControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(SectionTabControl);
-            Name = "AdminControl";
-            Size = new Size(820, 500);
-            Load += AdminControl_Load;
+            Controls.Add(AddButton);
+            Name = "AddUserControl";
+            Size = new Size(750, 450);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TabControl SectionTabControl;
+        private Button AddButton;
     }
 }

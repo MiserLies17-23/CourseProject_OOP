@@ -36,11 +36,11 @@ namespace WinFormsApp_OOP_CourseProject.Repository
             return connection.Query<Exhibit>(sql, new { Section = section.ToString() });
         }
 
-        public Exhibit GetById(int exhibitId)
+        public Exhibit? GetById(int exhibitId)
         {
             using var connection = CreateConnection();
             var sql = "SELECT * FROM Exhibits WHERE Id = @Id";
-            return (Exhibit)connection.Query<Exhibit>(sql, new { Id = exhibitId });
+            return connection.QueryFirstOrDefault<Exhibit>(sql, new { Id = exhibitId });
         }
 
         public void Add(Exhibit newExhibit)

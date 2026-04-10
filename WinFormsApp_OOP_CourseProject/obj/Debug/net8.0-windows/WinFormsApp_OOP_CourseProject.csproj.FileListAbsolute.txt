@@ -36,3 +36,6 @@ C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.csproj.AssemblyReference.cache
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinForms.047B55B3.Up2Date
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\bin\Debug\net8.0-windows\Dapper.dll
+C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.sourcelink.json
+C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.Controls.AddExhibitControl.resources
+C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.Controls.EditEchibitControl.resources

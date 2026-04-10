@@ -8,7 +8,7 @@ namespace WinFormsApp_OOP_CourseProject.Repository
 
         IEnumerable<Exhibit> GetBySection(SectionEnum section);
 
-        Exhibit GetById(int id);
+        Exhibit? GetById(int id);
 
         void Add(Exhibit newExhibit);
 

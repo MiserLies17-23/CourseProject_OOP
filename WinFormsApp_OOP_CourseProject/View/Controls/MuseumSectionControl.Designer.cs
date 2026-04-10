@@ -34,12 +34,20 @@
             AgeColumn = new DataGridViewTextBoxColumn();
             DateOfDiscoveryColumn = new DataGridViewTextBoxColumn();
             DiscriptionColumn = new DataGridViewTextBoxColumn();
-            ViewButtonColumn = new DataGridViewButtonColumn();
+            EditButtonColumn = new DataGridViewButtonColumn();
+            DeleteButtonColumn = new DataGridViewButtonColumn();
             SectionNameLabel = new Label();
             ExhibitSearchPanel = new Panel();
+            ClearButton = new Button();
+            ValueLabel = new Label();
+            textBox1 = new TextBox();
+            CriteriaLabel = new Label();
+            CriteriaComboBox = new ComboBox();
             SearchButton = new Button();
             ExhibitSearchLabel = new Label();
             BackButton = new Button();
+            AddButton = new Button();
+            ExhibitsLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)SectionDataGridView).BeginInit();
             ExhibitSearchPanel.SuspendLayout();
             SuspendLayout();
@@ -51,13 +59,14 @@
             SectionDataGridView.AllowUserToResizeColumns = false;
             SectionDataGridView.AllowUserToResizeRows = false;
             SectionDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            SectionDataGridView.Columns.AddRange(new DataGridViewColumn[] { IdColumn, NameColumn, AgeColumn, DateOfDiscoveryColumn, DiscriptionColumn, ViewButtonColumn });
-            SectionDataGridView.Location = new Point(3, 210);
+            SectionDataGridView.Columns.AddRange(new DataGridViewColumn[] { IdColumn, NameColumn, AgeColumn, DateOfDiscoveryColumn, DiscriptionColumn, EditButtonColumn, DeleteButtonColumn });
+            SectionDataGridView.Location = new Point(3, 188);
             SectionDataGridView.Name = "SectionDataGridView";
             SectionDataGridView.RowHeadersVisible = false;
             SectionDataGridView.RowHeadersWidth = 51;
-            SectionDataGridView.Size = new Size(744, 176);
+            SectionDataGridView.Size = new Size(744, 198);
             SectionDataGridView.TabIndex = 0;
+            SectionDataGridView.CellContentClick += SectionDataGridView_CellContentClick;
             // 
             // IdColumn
             // 
@@ -85,7 +94,7 @@
             DateOfDiscoveryColumn.HeaderText = "Дата обнаружения";
             DateOfDiscoveryColumn.MinimumWidth = 6;
             DateOfDiscoveryColumn.Name = "DateOfDiscoveryColumn";
-            DateOfDiscoveryColumn.Width = 170;
+            DateOfDiscoveryColumn.Width = 110;
             // 
             // DiscriptionColumn
             // 
@@ -94,12 +103,23 @@
             DiscriptionColumn.Name = "DiscriptionColumn";
             DiscriptionColumn.Width = 170;
             // 
-            // ViewButtonColumn
+            // EditButtonColumn
             // 
-            ViewButtonColumn.HeaderText = "Посмотреть";
-            ViewButtonColumn.MinimumWidth = 6;
-            ViewButtonColumn.Name = "ViewButtonColumn";
-            ViewButtonColumn.Width = 125;
+            EditButtonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            EditButtonColumn.HeaderText = "Изменить";
+            EditButtonColumn.MinimumWidth = 6;
+            EditButtonColumn.Name = "EditButtonColumn";
+            EditButtonColumn.Width = 125;
+            // 
+            // DeleteButtonColumn
+            // 
+            DeleteButtonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            DeleteButtonColumn.HeaderText = "Удалить";
+            DeleteButtonColumn.MinimumWidth = 6;
+            DeleteButtonColumn.Name = "DeleteButtonColumn";
+            DeleteButtonColumn.Resizable = DataGridViewTriState.True;
+            DeleteButtonColumn.SortMode = DataGridViewColumnSortMode.Automatic;
+            DeleteButtonColumn.Width = 125;
             // 
             // SectionNameLabel
             // 
@@ -114,16 +134,65 @@
             // ExhibitSearchPanel
             // 
             ExhibitSearchPanel.BorderStyle = BorderStyle.FixedSingle;
+            ExhibitSearchPanel.Controls.Add(ClearButton);
+            ExhibitSearchPanel.Controls.Add(ValueLabel);
+            ExhibitSearchPanel.Controls.Add(textBox1);
+            ExhibitSearchPanel.Controls.Add(CriteriaLabel);
+            ExhibitSearchPanel.Controls.Add(CriteriaComboBox);
             ExhibitSearchPanel.Controls.Add(SearchButton);
             ExhibitSearchPanel.Controls.Add(ExhibitSearchLabel);
             ExhibitSearchPanel.Location = new Point(3, 44);
             ExhibitSearchPanel.Name = "ExhibitSearchPanel";
-            ExhibitSearchPanel.Size = new Size(744, 143);
+            ExhibitSearchPanel.Size = new Size(744, 102);
             ExhibitSearchPanel.TabIndex = 2;
+            // 
+            // ClearButton
+            // 
+            ClearButton.Location = new Point(605, 40);
+            ClearButton.Name = "ClearButton";
+            ClearButton.Size = new Size(94, 29);
+            ClearButton.TabIndex = 6;
+            ClearButton.Text = "Сбросить";
+            ClearButton.UseVisualStyleBackColor = true;
+            // 
+            // ValueLabel
+            // 
+            ValueLabel.AutoSize = true;
+            ValueLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            ValueLabel.Location = new Point(246, 45);
+            ValueLabel.Name = "ValueLabel";
+            ValueLabel.Size = new Size(77, 20);
+            ValueLabel.TabIndex = 5;
+            ValueLabel.Text = "Значение";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(328, 42);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 4;
+            // 
+            // CriteriaLabel
+            // 
+            CriteriaLabel.AutoSize = true;
+            CriteriaLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            CriteriaLabel.Location = new Point(3, 44);
+            CriteriaLabel.Name = "CriteriaLabel";
+            CriteriaLabel.Size = new Size(77, 20);
+            CriteriaLabel.TabIndex = 3;
+            CriteriaLabel.Text = "Критерий";
+            // 
+            // CriteriaComboBox
+            // 
+            CriteriaComboBox.FormattingEnabled = true;
+            CriteriaComboBox.Location = new Point(86, 41);
+            CriteriaComboBox.Name = "CriteriaComboBox";
+            CriteriaComboBox.Size = new Size(151, 28);
+            CriteriaComboBox.TabIndex = 2;
             // 
             // SearchButton
             // 
-            SearchButton.Location = new Point(645, 109);
+            SearchButton.Location = new Point(488, 41);
             SearchButton.Name = "SearchButton";
             SearchButton.Size = new Size(94, 29);
             SearchButton.TabIndex = 1;
@@ -148,11 +217,34 @@
             BackButton.TabIndex = 3;
             BackButton.Text = "Назад";
             BackButton.UseVisualStyleBackColor = true;
+            BackButton.Click += BackButton_Click;
+            // 
+            // AddButton
+            // 
+            AddButton.Location = new Point(294, 392);
+            AddButton.Name = "AddButton";
+            AddButton.Size = new Size(94, 29);
+            AddButton.TabIndex = 4;
+            AddButton.Text = "Добавить";
+            AddButton.UseVisualStyleBackColor = true;
+            AddButton.Click += AddButton_Click;
+            // 
+            // ExhibitsLabel
+            // 
+            ExhibitsLabel.AutoSize = true;
+            ExhibitsLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            ExhibitsLabel.Location = new Point(269, 157);
+            ExhibitsLabel.Name = "ExhibitsLabel";
+            ExhibitsLabel.Size = new Size(144, 20);
+            ExhibitsLabel.TabIndex = 5;
+            ExhibitsLabel.Text = "Список экспонатов";
             // 
             // MuseumSectionControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(ExhibitsLabel);
+            Controls.Add(AddButton);
             Controls.Add(BackButton);
             Controls.Add(ExhibitSearchPanel);
             Controls.Add(SectionNameLabel);
@@ -170,16 +262,24 @@
         #endregion
 
         private DataGridView SectionDataGridView;
-        private DataGridViewTextBoxColumn IdColumn;
-        private DataGridViewTextBoxColumn NameColumn;
-        private DataGridViewTextBoxColumn AgeColumn;
-        private DataGridViewTextBoxColumn DateOfDiscoveryColumn;
-        private DataGridViewTextBoxColumn DiscriptionColumn;
-        private DataGridViewButtonColumn ViewButtonColumn;
         private Label SectionNameLabel;
         private Panel ExhibitSearchPanel;
         private Button SearchButton;
         private Label ExhibitSearchLabel;
         private Button BackButton;
+        private Button AddButton;
+        private Button ClearButton;
+        private Label ValueLabel;
+        private TextBox textBox1;
+        private Label CriteriaLabel;
+        private ComboBox CriteriaComboBox;
+        private Label ExhibitsLabel;
+        private DataGridViewTextBoxColumn IdColumn;
+        private DataGridViewTextBoxColumn NameColumn;
+        private DataGridViewTextBoxColumn AgeColumn;
+        private DataGridViewTextBoxColumn DateOfDiscoveryColumn;
+        private DataGridViewTextBoxColumn DiscriptionColumn;
+        private DataGridViewButtonColumn EditButtonColumn;
+        private DataGridViewButtonColumn DeleteButtonColumn;
     }
 }

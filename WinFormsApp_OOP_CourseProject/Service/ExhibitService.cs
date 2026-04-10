@@ -30,9 +30,9 @@ namespace WinFormsApp_OOP_CourseProject.Service
             return _exhibitRepository.GetBySection(section);
         }
 
-        public Exhibit GetById(int id)
+        public Exhibit? GetById(int id)
         {
-            if (id >= 0 && id < _exhibitRepository.GetCount())
+            if (id >= 0 )
                 return _exhibitRepository.GetById(id);
 
             throw new ArgumentException("Указан неверный Id!");
@@ -48,18 +48,18 @@ namespace WinFormsApp_OOP_CourseProject.Service
             
             // Валидация!
 
-            editExhibit.Section = newSection;
-            editExhibit.Name = newName;
-            editExhibit.Age = newAge;
-            editExhibit.DateOfDiscovery = newDateOfDiscovery;
-            editExhibit.Description = newDescription;
+            editExhibit!.Section = newSection;
+            editExhibit!.Name = newName;
+            editExhibit!.Age = newAge;
+            editExhibit!.DateOfDiscovery = newDateOfDiscovery;
+            editExhibit!.Description = newDescription;
 
-            _exhibitRepository.Update(editExhibit);
+            _exhibitRepository.Update(editExhibit!);
         }
 
         public void Delete(int id)
         {
-            if (id < 0 || id >= _exhibitRepository.GetCount())
+            if (id < 0)
                 throw new ArgumentException("Указан неверный Id!");
 
             _exhibitRepository.Delete(id);
