@@ -11,7 +11,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
 
         private readonly SectionEnum _section;
 
-        public event Action? AddButtonEvent;
+        public event Action<SectionEnum>? AddButtonEvent;
 
         public event Action<int>? ChangeButtonEvent;
 
@@ -79,7 +79,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            AddButtonEvent?.Invoke();
+            AddButtonEvent?.Invoke(_section);
         }
 
         private void BackButton_Click(object sender, EventArgs e)

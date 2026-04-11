@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp_OOP_CourseProject.View.Controls
 {
-    partial class EditEchibitControl
+    partial class EditExhibitControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -43,7 +43,7 @@
             // 
             // BackButton
             // 
-            BackButton.Location = new Point(14, 423);
+            BackButton.Location = new Point(3, 458);
             BackButton.Name = "BackButton";
             BackButton.Size = new Size(94, 29);
             BackButton.TabIndex = 0;
@@ -116,7 +116,7 @@
             // 
             DescriptionRichTextBox.Location = new Point(14, 165);
             DescriptionRichTextBox.Name = "DescriptionRichTextBox";
-            DescriptionRichTextBox.Size = new Size(746, 215);
+            DescriptionRichTextBox.Size = new Size(746, 249);
             DescriptionRichTextBox.TabIndex = 8;
             DescriptionRichTextBox.Text = "";
             // 
@@ -131,12 +131,13 @@
             // 
             // SaveButton
             // 
-            SaveButton.Location = new Point(317, 386);
+            SaveButton.Location = new Point(317, 420);
             SaveButton.Name = "SaveButton";
             SaveButton.Size = new Size(94, 29);
             SaveButton.TabIndex = 10;
             SaveButton.Text = "Сохранить";
             SaveButton.UseVisualStyleBackColor = true;
+            SaveButton.Click += SaveButton_Click;
             // 
             // EditEchibitControl
             // 

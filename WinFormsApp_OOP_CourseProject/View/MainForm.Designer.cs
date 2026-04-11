@@ -34,10 +34,14 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(762, 450);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "MainForm";
-            Text = "Form1";
-            Load += this.MainForm_Load;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "MainForm";
+            Load += MainForm_Load;
             ResumeLayout(false);
         }
 

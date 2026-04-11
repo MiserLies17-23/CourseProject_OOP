@@ -21,6 +21,7 @@ namespace WinFormsApp_OOP_CourseProject.Controller
             return exhibits.Select(exhibit => new ExhibitDTO
             {
                 Id = exhibit.Id,
+                Section = exhibit.Section,
                 Name = exhibit.Name,
                 Age = exhibit.Age,
                 DateOfDiscovery = exhibit.DateOfDiscovery.ToString("dd/MM/yyyy"),
@@ -36,6 +37,7 @@ namespace WinFormsApp_OOP_CourseProject.Controller
             return exhibits.Select(exhibit => new ExhibitDTO
             {
                 Id = exhibit.Id,
+                Section = exhibit.Section,
                 Name = exhibit.Name,
                 Age = exhibit.Age,
                 DateOfDiscovery = exhibit.DateOfDiscovery.ToString("dd/MM/yyyy"),
@@ -45,10 +47,13 @@ namespace WinFormsApp_OOP_CourseProject.Controller
 
         public ExhibitDTO GetById(int exhibitId)
         {
-            var exhibit = _exhibitService.GetById(exhibitId);
+            var exhibit = _exhibitService.GetById(exhibitId)
+                ?? throw new ArgumentNullException("Ошибка поиска экспоната");
+
             return new ExhibitDTO
             {
                 Id = exhibit.Id,
+                Section = exhibit.Section,
                 Name = exhibit.Name,
                 Age = exhibit.Age,
                 DateOfDiscovery = exhibit.DateOfDiscovery.ToString("dd/MM/yyyy"),
@@ -58,21 +63,12 @@ namespace WinFormsApp_OOP_CourseProject.Controller
 
         public void Add(SectionEnum section, string name, int age, string description, string dateOfDiscovery)
         {
-            //Добавить проверку на корректность строки!
-            if (!DateTime.TryParse(dateOfDiscovery, out var dateOfDiscoveryDateTime))
-                throw new ArgumentException("Неправильный формат даты!");
-
-            //Валидация остальных параметров...
-
-            _exhibitService.Add(section, name, age, description, dateOfDiscoveryDateTime);
+            _exhibitService.Add(section, name, age, description, dateOfDiscovery);
         }
 
         public void Edit(int exhibitId, SectionEnum section, string name, int age, string dateOfDiscovery, string description)
         {
-            if (!DateTime.TryParse(dateOfDiscovery, out var dateOfDiscoveryDateTime))
-                throw new ArgumentException("Неправильный формат даты!");
-
-            _exhibitService.Edit(exhibitId, section, name, age, dateOfDiscoveryDateTime, description);
+            _exhibitService.Edit(exhibitId, section, name, age, dateOfDiscovery, description);
         }
 
         public void Delete(int exhibitId)

@@ -10,7 +10,7 @@
     <Compile Update="View\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\Controls\EditEchibitControl.cs">
+    <Compile Update="View\Controls\EditExhibitControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\Controls\HelloControl.cs">

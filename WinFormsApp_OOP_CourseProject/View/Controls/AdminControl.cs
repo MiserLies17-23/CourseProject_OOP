@@ -10,7 +10,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
 
         private readonly Dictionary<SectionEnum, MuseumSectionControl> _sections;
 
-        public event Action? AddUserRequested;
+        public event Action<SectionEnum>? AddUserRequested;
 
         public event Action<int>? ChangeUserRequested;
 
@@ -28,7 +28,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             InitializeSectionTabs();
         }
 
-        private void InitializeSectionTabs()
+        public void InitializeSectionTabs()
         {
             SectionTabControl.TabPages.Clear();
 
@@ -37,7 +37,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
                 var control = new MuseumSectionControl(_controller, section);
                 _sections[section] = control;
 
-                control.AddButtonEvent += () => AddUserRequested?.Invoke();
+                control.AddButtonEvent += (section) => AddUserRequested?.Invoke(section);
                 control.CloseButtonEvent += () => CloseFormRequest?.Invoke();
                 control.ChangeButtonEvent += (id) => ChangeUserRequested?.Invoke(id);
 

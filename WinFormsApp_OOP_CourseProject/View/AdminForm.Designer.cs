@@ -34,9 +34,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(802, 453);
+            ClientSize = new Size(782, 483);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "AdminForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "AdminForm";
+            TopMost = true;
             Load += AdminForm_Load;
             ResumeLayout(false);
         }

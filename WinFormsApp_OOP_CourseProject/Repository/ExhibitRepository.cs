@@ -47,8 +47,8 @@ namespace WinFormsApp_OOP_CourseProject.Repository
         {
             var connection = CreateConnection();
             var sql = @"
-            INSERT INTO Exhibits (Name, Description, Section, Year, Author, CreatedAt)
-            VALUES (@Name, @Description, @Section, @Year, @Author, @CreatedAt)
+            INSERT INTO Exhibits (Name, Description, Section, Age, DateTime)
+            VALUES (@Name, @Description, @Section, @Age, @DateOfDiscovery)
             RETURNING Id";
 
             newExhibit.Id = connection.QuerySingle<int>(sql, new
@@ -69,8 +69,8 @@ namespace WinFormsApp_OOP_CourseProject.Repository
             SET Name = @Name, 
                 Description = @Description, 
                 Section = @Section,
-                Year = @Year,
-                Author = @Author
+                Age = @Age,
+                DateTime = @DateOfDiscovery
             WHERE Id = @Id";
 
             connection.Execute(sql, new

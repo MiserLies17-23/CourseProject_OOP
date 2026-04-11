@@ -1,7 +1,9 @@
 ﻿using WinFormsApp_OOP_CourseProject.Controller;
+using WinFormsApp_OOP_CourseProject.Model;
 
 namespace WinFormsApp_OOP_CourseProject.View.Controls
 {
+    // Организовать перехват исключений
     public partial class AdminForm : Form
     {
         private readonly ExhibitController _controller;
@@ -10,21 +12,19 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
 
         private AddExhibitControl _addControl;
 
-        private EditEchibitControl _editControl;
+        private EditExhibitControl _editControl;
 
         public AdminForm(ExhibitController controller)
         {
             InitializeComponent();
             _controller = controller;
             _control = new AdminControl(controller);
-            _addControl = new AddExhibitControl();
-            _editControl = new EditEchibitControl(controller);
+            _addControl = new AddExhibitControl(controller);
+            _editControl = new EditExhibitControl(controller);
 
             _control.AddUserRequested += OnAddUserRequested;
             _control.ChangeUserRequested += OnEditExhibitRequest;
             _control.CloseFormRequest += OnCloseFormRequest;
-
-            _editControl.BackButtonEvent += () => Controls.Remove(_editControl);
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -33,22 +33,38 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             Controls.Add(_control);
         }
 
-        private void OnAddUserRequested()
+        private void OnAddUserRequested(SectionEnum section)
         {
             Controls.Remove(_control);
+
+            _addControl.SetSection(section);
 
             _addControl.Dock = DockStyle.Fill;
             Controls.Add(_addControl);
 
-            //_addControl.UserAdded += () =>
-            //{
-            //    Controls.Remove(_addControl);
-            //    Controls.Add(_control);
-            //};
+            _addControl.AddButtonEvent += () =>
+            {
+                Controls.Remove(_addControl);
+
+                _control.InitializeSectionTabs();
+
+                _control.Dock = DockStyle.Fill;
+                Controls.Add(_control);
+            };
+
+            _addControl.BackButtonEvent += () =>
+            {
+                Controls.Remove(_addControl);
+
+                _control.Dock = DockStyle.Fill;
+                Controls.Add(_control);
+            };
         }
 
         private void OnEditExhibitRequest(int id)
         {
+            // Все try должны быть здесь!
+
             Controls.Remove(_control);
             _editControl.SetExhibit(_controller.GetById(id));
 
@@ -58,6 +74,16 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             _editControl.BackButtonEvent += () =>
             {
                 Controls.Remove(_editControl);
+
+                _control.Dock = DockStyle.Fill;
+                Controls.Add(_control);
+            };
+
+            _editControl.SaveButtonEvent += () =>
+            {
+                Controls.Remove(_editControl);
+
+                _control.InitializeSectionTabs();
 
                 _control.Dock = DockStyle.Fill;
                 Controls.Add(_control);

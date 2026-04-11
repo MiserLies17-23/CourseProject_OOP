@@ -1,5 +1,6 @@
 ﻿using WinFormsApp_OOP_CourseProject.Model;
 using WinFormsApp_OOP_CourseProject.Repository;
+using WinFormsApp_OOP_CourseProject.Utils;
 
 namespace WinFormsApp_OOP_CourseProject.Service
 {
@@ -12,11 +13,12 @@ namespace WinFormsApp_OOP_CourseProject.Service
             _exhibitRepository = new ExhibitRepository();
         }
 
-        public void Add(SectionEnum section, string name, int age, string description, DateTime dateOfDiscovery)
+        public void Add(SectionEnum section, string name, int age, string description, string dateOfDiscovery)
         {
-            //Валидация
+            Validator.ValidateExhibit(name, age, description,
+               dateOfDiscovery, out DateTime date);
 
-            var newExhibit = new Exhibit(section, name, age, dateOfDiscovery, description);
+            var newExhibit = new Exhibit(section, name, age, date, description);
             _exhibitRepository.Add(newExhibit);
         }
 
@@ -39,19 +41,20 @@ namespace WinFormsApp_OOP_CourseProject.Service
         }
 
         public void Edit(int id, SectionEnum newSection, string newName, int newAge, 
-            DateTime newDateOfDiscovery, string newDescription)
+            string newDateOfDiscovery, string newDescription)
         {
-            if (id < 0 || id >= _exhibitRepository.GetCount())
+            if (id < 0)
                 throw new ArgumentException("Указан неверный Id!");
 
             var editExhibit = _exhibitRepository.GetById(id);
             
-            // Валидация!
+            Validator.ValidateExhibit(newName, newAge, newDescription, 
+               newDateOfDiscovery, out DateTime date);
 
             editExhibit!.Section = newSection;
             editExhibit!.Name = newName;
             editExhibit!.Age = newAge;
-            editExhibit!.DateOfDiscovery = newDateOfDiscovery;
+            editExhibit!.DateOfDiscovery = date;
             editExhibit!.Description = newDescription;
 
             _exhibitRepository.Update(editExhibit!);
