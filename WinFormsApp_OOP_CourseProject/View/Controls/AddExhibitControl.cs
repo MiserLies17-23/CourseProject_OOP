@@ -24,7 +24,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             _section = section;
         }
 
-        private void AddButton_Click(object sender, EventArgs e)
+        private async void AddButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
                 string? date = DateTextBox.Text;
                 string? description = DescriptionRichTextBox.Text;
 
-                _controller.Add(_section, name, age, description, date);
+                await _controller.AddAsync(_section, name, age, description, date);
 
                 MessageBox.Show("Экспонат успешно добавлен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

@@ -22,28 +22,49 @@ namespace WinFormsApp_OOP_CourseProject.Repository
             return new NpgsqlConnection(_connectionString);
         }
 
-        public IEnumerable<Exhibit> GetAll()
+        public async Task<IEnumerable<Exhibit>> GetAllAsync()
         {
             using var connection = CreateConnection();
             var sql = "SELECT * FROM Exhibits";
-            return connection.Query<Exhibit>(sql);
+            return await connection.QueryAsync<Exhibit>(sql);
         }
 
-        public IEnumerable<Exhibit> GetBySection(SectionEnum section)
+        public async Task<IEnumerable<Exhibit>> GetBySectionAsync(SectionEnum section)
         {
             using var connection = CreateConnection();
             var sql = "SELECT * FROM Exhibits WHERE Section = @Section";
-            return connection.Query<Exhibit>(sql, new { Section = section.ToString() });
+            return await connection.QueryAsync<Exhibit>(sql, new { Section = section.ToString() });
         }
 
-        public Exhibit? GetById(int exhibitId)
+        public async Task<Exhibit?> GetByIdAsync(int exhibitId)
         {
             using var connection = CreateConnection();
             var sql = "SELECT * FROM Exhibits WHERE Id = @Id";
-            return connection.QueryFirstOrDefault<Exhibit>(sql, new { Id = exhibitId });
+            return await connection.QueryFirstOrDefaultAsync<Exhibit>(sql, new { Id = exhibitId });
         }
 
-        public void Add(Exhibit newExhibit)
+        public async Task<IEnumerable<Exhibit>> GetByNameAsync(string name)
+        {
+            using var connection = CreateConnection();
+            var sql = "SELECT * FROM Exhibits WHERE Name LIKE @Name";
+            return await connection.QueryAsync<Exhibit>(sql, new { Name = $"%{name}%" });
+        }
+
+        public async Task<IEnumerable<Exhibit>> GetByDateAsync(DateTime date)
+        {
+            using var connection = CreateConnection();
+            var sql = "SELECT * FROM Exhibits WHERE DateTime = @DateOfDiscovery";
+            return await connection.QueryAsync<Exhibit>(sql, new { DateTime = date });
+        }
+
+        public async Task<IEnumerable<Exhibit>> GetByAgeAsync(int age)
+        {
+            using var connection = CreateConnection();
+            var sql = "SELECT * FROM Exhibits WHERE Age = @Age";
+            return await connection.QueryAsync<Exhibit>(sql, new { Age = age });
+        }
+
+        public async Task AddAsync(Exhibit newExhibit)
         {
             var connection = CreateConnection();
             var sql = @"
@@ -51,7 +72,7 @@ namespace WinFormsApp_OOP_CourseProject.Repository
             VALUES (@Name, @Description, @Section, @Age, @DateOfDiscovery)
             RETURNING Id";
 
-            newExhibit.Id = connection.QuerySingle<int>(sql, new
+            newExhibit.Id = await connection.QuerySingleAsync<int>(sql, new
             {
                 newExhibit.Name,
                 newExhibit.Description,
@@ -61,7 +82,7 @@ namespace WinFormsApp_OOP_CourseProject.Repository
             });
         }
 
-        public void Update(Exhibit editExhibit)
+        public async Task UpdateAsync(Exhibit editExhibit)
         {
             var connection = CreateConnection();
             var sql = @"
@@ -73,7 +94,7 @@ namespace WinFormsApp_OOP_CourseProject.Repository
                 DateTime = @DateOfDiscovery
             WHERE Id = @Id";
 
-            connection.Execute(sql, new
+            await connection.ExecuteAsync(sql, new
             {
                 editExhibit.Id,
                 editExhibit.Name,
@@ -84,11 +105,11 @@ namespace WinFormsApp_OOP_CourseProject.Repository
             });
         }
 
-        public void Delete(int exhibitId)
+        public async Task DeleteAsync(int exhibitId)
         {
             using var connection = CreateConnection();
             var sql = "DELETE FROM Exhibits WHERE Id = @Id";
-            connection.Execute(sql, new { Id = exhibitId });
+            await connection.ExecuteAsync(sql, new { Id = exhibitId });
         }
 
         public int GetCount()

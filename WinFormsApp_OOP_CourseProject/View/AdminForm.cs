@@ -61,12 +61,12 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             };
         }
 
-        private void OnEditExhibitRequest(int id)
+        private async Task OnEditExhibitRequest(int id)
         {
             // Все try должны быть здесь!
 
             Controls.Remove(_control);
-            _editControl.SetExhibit(_controller.GetById(id));
+            _editControl.SetExhibit(await _controller.GetByIdAsync(id));
 
             _editControl.Dock = DockStyle.Fill;
             Controls.Add(_editControl);

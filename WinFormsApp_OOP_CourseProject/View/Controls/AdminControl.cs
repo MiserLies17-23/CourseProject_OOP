@@ -12,7 +12,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
 
         public event Action<SectionEnum>? AddUserRequested;
 
-        public event Action<int>? ChangeUserRequested;
+        public event Func<int, Task>? ChangeUserRequested;
 
         public event Action? CloseFormRequest;
 
@@ -32,14 +32,18 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
         {
             SectionTabControl.TabPages.Clear();
 
-            foreach(SectionEnum section in Enum.GetValues(typeof(SectionEnum)))
+            foreach (SectionEnum section in Enum.GetValues(typeof(SectionEnum)))
             {
                 var control = new MuseumSectionControl(_controller, section);
                 _sections[section] = control;
 
                 control.AddButtonEvent += (section) => AddUserRequested?.Invoke(section);
                 control.CloseButtonEvent += () => CloseFormRequest?.Invoke();
-                control.ChangeButtonEvent += (id) => ChangeUserRequested?.Invoke(id);
+                control.ChangeButtonEvent += async (id) =>
+                {
+                    if (ChangeUserRequested != null)
+                        await ChangeUserRequested(id);
+                };
 
                 control.Dock = DockStyle.Fill;
 

@@ -13,40 +13,60 @@ namespace WinFormsApp_OOP_CourseProject.Service
             _exhibitRepository = new ExhibitRepository();
         }
 
-        public void Add(SectionEnum section, string name, int age, string description, string dateOfDiscovery)
+        public async Task AddAsync(SectionEnum section, string name, int age, string description, string dateOfDiscovery)
         {
             Validator.ValidateExhibit(name, age, description,
                dateOfDiscovery, out DateTime date);
 
             var newExhibit = new Exhibit(section, name, age, date, description);
-            _exhibitRepository.Add(newExhibit);
+
+            await _exhibitRepository.AddAsync(newExhibit);
         }
 
-        public IEnumerable<Exhibit> GetAll()
+        public async Task<IEnumerable<Exhibit>> GetAllAsync()
         {
-            return _exhibitRepository.GetAll();
+            return await _exhibitRepository.GetAllAsync();
         }
 
-        public IEnumerable<Exhibit> GetBySection(SectionEnum section)
+        public async Task<IEnumerable<Exhibit>> GetBySectionAsync(SectionEnum section)
         {
-            return _exhibitRepository.GetBySection(section);
+            return await _exhibitRepository.GetBySectionAsync(section);
         }
 
-        public Exhibit? GetById(int id)
+        public async Task<Exhibit?> GetByIdAsync(int id)
         {
             if (id >= 0 )
-                return _exhibitRepository.GetById(id);
+                return await _exhibitRepository.GetByIdAsync(id);
 
             throw new ArgumentException("Указан неверный Id!");
         }
 
-        public void Edit(int id, SectionEnum newSection, string newName, int newAge, 
+        public async Task<IEnumerable<Exhibit>> GetByName(string name)
+        {
+            return await _exhibitRepository.GetByNameAsync(name);
+        }
+
+        public async Task<IEnumerable<Exhibit>> GetByAge(int age)
+        {
+            Validator.ValidateAge(age);
+
+            return await _exhibitRepository.GetByAgeAsync(age);
+        }
+
+        public async Task<IEnumerable<Exhibit>> GetByDate(string date)
+        {
+            DateTime currentDate = Validator.ValidateDate(date);
+
+            return await _exhibitRepository.GetByDateAsync(currentDate);
+        }
+
+        public async Task UpdateAsync(int id, SectionEnum newSection, string newName, int newAge, 
             string newDateOfDiscovery, string newDescription)
         {
             if (id < 0)
                 throw new ArgumentException("Указан неверный Id!");
 
-            var editExhibit = _exhibitRepository.GetById(id);
+            var editExhibit = await _exhibitRepository.GetByIdAsync(id);
             
             Validator.ValidateExhibit(newName, newAge, newDescription, 
                newDateOfDiscovery, out DateTime date);
@@ -57,15 +77,15 @@ namespace WinFormsApp_OOP_CourseProject.Service
             editExhibit!.DateOfDiscovery = date;
             editExhibit!.Description = newDescription;
 
-            _exhibitRepository.Update(editExhibit!);
+            await _exhibitRepository.UpdateAsync(editExhibit!);
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             if (id < 0)
                 throw new ArgumentException("Указан неверный Id!");
 
-            _exhibitRepository.Delete(id);
+            await _exhibitRepository.DeleteAsync(id);
         }
     }
 }

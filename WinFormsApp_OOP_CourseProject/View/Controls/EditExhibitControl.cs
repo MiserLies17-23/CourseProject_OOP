@@ -36,7 +36,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             _exhibit = exhibit;
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        private async void SaveButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
                 string? date = DateTextBox.Text;
                 string? description = DescriptionRichTextBox.Text;
 
-                _controller.Edit(_exhibit.Id, _exhibit.Section, name, age, date, description);
+                await _controller.UpdateAsync(_exhibit.Id, _exhibit.Section, name, age, date, description);
 
                 MessageBox.Show("Данные успешно обновлены!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

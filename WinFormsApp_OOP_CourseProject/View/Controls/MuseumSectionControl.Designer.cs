@@ -40,7 +40,7 @@
             ExhibitSearchPanel = new Panel();
             ClearButton = new Button();
             ValueLabel = new Label();
-            textBox1 = new TextBox();
+            CriteriaValueTextBox = new TextBox();
             CriteriaLabel = new Label();
             CriteriaComboBox = new ComboBox();
             SearchButton = new Button();
@@ -136,7 +136,7 @@
             ExhibitSearchPanel.BorderStyle = BorderStyle.FixedSingle;
             ExhibitSearchPanel.Controls.Add(ClearButton);
             ExhibitSearchPanel.Controls.Add(ValueLabel);
-            ExhibitSearchPanel.Controls.Add(textBox1);
+            ExhibitSearchPanel.Controls.Add(CriteriaValueTextBox);
             ExhibitSearchPanel.Controls.Add(CriteriaLabel);
             ExhibitSearchPanel.Controls.Add(CriteriaComboBox);
             ExhibitSearchPanel.Controls.Add(SearchButton);
@@ -154,6 +154,7 @@
             ClearButton.TabIndex = 6;
             ClearButton.Text = "Сбросить";
             ClearButton.UseVisualStyleBackColor = true;
+            ClearButton.Click += ClearButton_Click;
             // 
             // ValueLabel
             // 
@@ -165,12 +166,12 @@
             ValueLabel.TabIndex = 5;
             ValueLabel.Text = "Значение";
             // 
-            // textBox1
+            // CriteriaValueTextBox
             // 
-            textBox1.Location = new Point(328, 42);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 4;
+            CriteriaValueTextBox.Location = new Point(328, 42);
+            CriteriaValueTextBox.Name = "CriteriaValueTextBox";
+            CriteriaValueTextBox.Size = new Size(125, 27);
+            CriteriaValueTextBox.TabIndex = 4;
             // 
             // CriteriaLabel
             // 
@@ -185,6 +186,7 @@
             // CriteriaComboBox
             // 
             CriteriaComboBox.FormattingEnabled = true;
+            CriteriaComboBox.Items.AddRange(new object[] { "Id", "Название", "Возраст", "Дата обнаружения" });
             CriteriaComboBox.Location = new Point(86, 41);
             CriteriaComboBox.Name = "CriteriaComboBox";
             CriteriaComboBox.Size = new Size(151, 28);
@@ -198,6 +200,7 @@
             SearchButton.TabIndex = 1;
             SearchButton.Text = "Найти";
             SearchButton.UseVisualStyleBackColor = true;
+            SearchButton.Click += SearchButton_Click;
             // 
             // ExhibitSearchLabel
             // 
@@ -270,7 +273,7 @@
         private Button AddButton;
         private Button ClearButton;
         private Label ValueLabel;
-        private TextBox textBox1;
+        private TextBox CriteriaValueTextBox;
         private Label CriteriaLabel;
         private ComboBox CriteriaComboBox;
         private Label ExhibitsLabel;

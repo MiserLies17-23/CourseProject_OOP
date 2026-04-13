@@ -39,3 +39,4 @@ C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.sourcelink.json
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.Controls.AddExhibitControl.resources
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.Controls.EditExhibitControl.resources
+C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.VisitorForm.resources

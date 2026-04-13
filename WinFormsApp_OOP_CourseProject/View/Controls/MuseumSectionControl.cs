@@ -24,17 +24,21 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             _section = section;
         }
 
-        private void MuseumSectionControl_Load(object sender, EventArgs e)
+        private async void MuseumSectionControl_Load(object sender, EventArgs e)
         {
-            LoadExhibits();
+            await LoadAllExhibitsAsync();
         }
 
-        public void LoadExhibits()
+        private async Task LoadAllExhibitsAsync()
+        {
+            var exhibits = await _controller.GetBySectionAsync(_section);
+
+            LoadExhibitsByList(exhibits);
+        }
+
+        private void LoadExhibitsByList(List<ExhibitDTO> exhibits)
         {
             SectionDataGridView.Rows.Clear();
-
-            var exhibits = _controller.GetBySection(_section);
-
             foreach (ExhibitDTO exhibit in exhibits)
             {
                 int rowIndex = SectionDataGridView.Rows.Add();
@@ -48,7 +52,50 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             }
         }
 
-        private void SectionDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void SearchButton_Click(object sender, EventArgs e)
+        {
+            if(CriteriaComboBox.SelectedIndex == 0)
+            {
+                if (!int.TryParse(CriteriaValueTextBox.Text, out int id))
+                    throw new ArgumentException("Id должен быть числом!");
+
+                var exhibits = (List<ExhibitDTO>)[await _controller.GetByIdAsync(id)];
+
+                LoadExhibitsByList(exhibits);
+            }
+            if (CriteriaComboBox.SelectedIndex == 1)
+            {
+                var exhibits = await _controller.GetByNameAsync(CriteriaValueTextBox.Text);
+                
+                LoadExhibitsByList(exhibits);
+            }
+            if (CriteriaComboBox.SelectedIndex == 2)
+            {
+                if (!int.TryParse(CriteriaValueTextBox.Text, out int age))
+                    throw new ArgumentException("Id должен быть числом!");
+
+                var exhibits = await _controller.GetByAgeAsync(age);
+
+                LoadExhibitsByList(exhibits);
+
+            }
+            if (CriteriaComboBox.SelectedIndex == 3)
+            {
+                var exhibits = await _controller.GetByDateAsync(CriteriaValueTextBox.Text);
+
+                LoadExhibitsByList(exhibits);
+            }
+        }
+
+        private async void ClearButton_Click(object sender, EventArgs e)
+        {
+            CriteriaComboBox.SelectedItem = null;
+            CriteriaValueTextBox.Text = "";
+
+            await LoadAllExhibitsAsync();
+        }
+
+        private async void SectionDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -61,8 +108,8 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
                         MessageBoxDefaultButton.Button2);
                     if (result == DialogResult.Yes)
                     {
-                        _controller.Delete((int)SectionDataGridView.Rows[e.RowIndex].Cells[0].Value);
-                        LoadExhibits();
+                        await _controller.DeleteAsync((int)SectionDataGridView.Rows[e.RowIndex].Cells[0].Value);
+                        await LoadAllExhibitsAsync();
                     }
                 }
                 else if (e.RowIndex >= 0 && e.ColumnIndex == 5)

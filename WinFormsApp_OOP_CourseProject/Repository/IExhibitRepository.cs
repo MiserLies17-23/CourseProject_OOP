@@ -4,16 +4,22 @@ namespace WinFormsApp_OOP_CourseProject.Repository
 {
     public interface IExhibitRepository
     {
-        IEnumerable<Exhibit> GetAll();
+        Task<IEnumerable<Exhibit>> GetAllAsync();
 
-        IEnumerable<Exhibit> GetBySection(SectionEnum section);
+        Task<IEnumerable<Exhibit>> GetBySectionAsync(SectionEnum section);
 
-        Exhibit? GetById(int id);
+        Task<Exhibit?> GetByIdAsync(int id);
 
-        void Add(Exhibit newExhibit);
+        Task<IEnumerable<Exhibit>> GetByNameAsync(string name);
 
-        void Update(Exhibit editExhibit);
+        Task<IEnumerable<Exhibit>> GetByDateAsync(DateTime date);
 
-        void Delete(int id);
+        Task<IEnumerable<Exhibit>> GetByAgeAsync(int age);
+
+        Task AddAsync(Exhibit newExhibit);
+
+        Task UpdateAsync(Exhibit editExhibit);
+
+        Task DeleteAsync(int id);
     }
 }

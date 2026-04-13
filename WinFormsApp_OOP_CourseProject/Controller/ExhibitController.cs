@@ -13,9 +13,9 @@ namespace WinFormsApp_OOP_CourseProject.Controller
             _exhibitService = new ExhibitService();
         }
 
-        public List<ExhibitDTO> GetAll()
+        public async Task<List<ExhibitDTO>> GetAllAsync()
         {
-            var exhibits = _exhibitService.GetAll()
+            var exhibits = await _exhibitService.GetAllAsync()
                 ?? throw new ArgumentException("Репозиторий пуст!");
 
             return exhibits.Select(exhibit => new ExhibitDTO
@@ -29,9 +29,9 @@ namespace WinFormsApp_OOP_CourseProject.Controller
             }).ToList();
         }
 
-        public List<ExhibitDTO> GetBySection(SectionEnum section)
+        public async Task<List<ExhibitDTO>> GetBySectionAsync(SectionEnum section)
         {
-            var exhibits = _exhibitService.GetBySection(section)
+            var exhibits = await _exhibitService.GetBySectionAsync(section)
                 ?? throw new ArgumentException("Список секции пуст!");
 
             return exhibits.Select(exhibit => new ExhibitDTO
@@ -45,9 +45,9 @@ namespace WinFormsApp_OOP_CourseProject.Controller
             }).ToList();
         }
 
-        public ExhibitDTO GetById(int exhibitId)
+        public async Task<ExhibitDTO> GetByIdAsync(int exhibitId)
         {
-            var exhibit = _exhibitService.GetById(exhibitId)
+            var exhibit = await _exhibitService.GetByIdAsync(exhibitId)
                 ?? throw new ArgumentNullException("Ошибка поиска экспоната");
 
             return new ExhibitDTO
@@ -61,19 +61,67 @@ namespace WinFormsApp_OOP_CourseProject.Controller
             };
         }
 
-        public void Add(SectionEnum section, string name, int age, string description, string dateOfDiscovery)
+        public async Task<List<ExhibitDTO>> GetByNameAsync(string name)
         {
-            _exhibitService.Add(section, name, age, description, dateOfDiscovery);
+            var exhibits = await _exhibitService.GetByName(name)
+                ?? throw new ArgumentNullException("Ошибка поиска экспоната");
+            
+            return exhibits.Select(exhibit => new ExhibitDTO
+            {
+                Id = exhibit.Id,
+                Section = exhibit.Section,
+                Name = exhibit.Name,
+                Age = exhibit.Age,
+                DateOfDiscovery = exhibit.DateOfDiscovery.ToString("dd/MM/yyyy"),
+                Description = exhibit.Description
+            }).ToList();
         }
 
-        public void Edit(int exhibitId, SectionEnum section, string name, int age, string dateOfDiscovery, string description)
+        public async Task<List<ExhibitDTO>> GetByAgeAsync(int age)
         {
-            _exhibitService.Edit(exhibitId, section, name, age, dateOfDiscovery, description);
+            var exhibits = await _exhibitService.GetByAge(age)
+                ?? throw new ArgumentNullException("Ошибка поиска экспоната");
+            
+            return exhibits.Select(exhibit => new ExhibitDTO
+            {
+                Id = exhibit.Id,
+                Section = exhibit.Section,
+                Name = exhibit.Name,
+                Age = exhibit.Age,
+                DateOfDiscovery = exhibit.DateOfDiscovery.ToString("dd/MM/yyyy"),
+                Description = exhibit.Description
+            }).ToList();
         }
 
-        public void Delete(int exhibitId)
+        public async Task<List<ExhibitDTO>> GetByDateAsync(string stringDate)
         {
-            _exhibitService.Delete(exhibitId);
+            var exhibits = await _exhibitService.GetByDate(stringDate)
+                ?? throw new ArgumentNullException("Ошибка поиска экспоната");
+            
+            return exhibits.Select(exhibit => new ExhibitDTO
+            {
+                Id = exhibit.Id,
+                Section = exhibit.Section,
+                Name = exhibit.Name,
+                Age = exhibit.Age,
+                DateOfDiscovery = exhibit.DateOfDiscovery.ToString("dd/MM/yyyy"),
+                Description = exhibit.Description
+            }).ToList();
+        }
+
+        public async Task AddAsync(SectionEnum section, string name, int age, string description, string dateOfDiscovery)
+        {
+            await _exhibitService.AddAsync(section, name, age, description, dateOfDiscovery);
+        }
+
+        public async Task UpdateAsync(int exhibitId, SectionEnum section, string name, int age, string dateOfDiscovery, string description)
+        {
+            await _exhibitService.UpdateAsync(exhibitId, section, name, age, dateOfDiscovery, description);
+        }
+
+        public async Task DeleteAsync(int exhibitId)
+        {
+            await _exhibitService.DeleteAsync(exhibitId);
         }
     }
 }
