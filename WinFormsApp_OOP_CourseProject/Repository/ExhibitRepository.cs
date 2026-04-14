@@ -53,7 +53,7 @@ namespace WinFormsApp_OOP_CourseProject.Repository
         public async Task<IEnumerable<Exhibit>> GetByDateAsync(DateTime date)
         {
             using var connection = CreateConnection();
-            var sql = "SELECT * FROM Exhibits WHERE DateTime = @DateOfDiscovery";
+            var sql = "SELECT * FROM Exhibits WHERE DateOfDiscovery = @DateOfDiscovery";
             return await connection.QueryAsync<Exhibit>(sql, new { DateTime = date });
         }
 
@@ -68,7 +68,7 @@ namespace WinFormsApp_OOP_CourseProject.Repository
         {
             var connection = CreateConnection();
             var sql = @"
-            INSERT INTO Exhibits (Name, Description, Section, Age, DateTime)
+            INSERT INTO Exhibits (Name, Description, Section, Age, DateOfDiscovery)
             VALUES (@Name, @Description, @Section, @Age, @DateOfDiscovery)
             RETURNING Id";
 
@@ -91,7 +91,7 @@ namespace WinFormsApp_OOP_CourseProject.Repository
                 Description = @Description, 
                 Section = @Section,
                 Age = @Age,
-                DateTime = @DateOfDiscovery
+                DateOfDiscovery = @DateOfDiscovery
             WHERE Id = @Id";
 
             await connection.ExecuteAsync(sql, new

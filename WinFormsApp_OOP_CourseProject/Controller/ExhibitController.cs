@@ -63,7 +63,7 @@ namespace WinFormsApp_OOP_CourseProject.Controller
 
         public async Task<List<ExhibitDTO>> GetByNameAsync(string name)
         {
-            var exhibits = await _exhibitService.GetByName(name)
+            var exhibits = await _exhibitService.GetByNameAsync(name)
                 ?? throw new ArgumentNullException("Ошибка поиска экспоната");
             
             return exhibits.Select(exhibit => new ExhibitDTO
@@ -79,7 +79,7 @@ namespace WinFormsApp_OOP_CourseProject.Controller
 
         public async Task<List<ExhibitDTO>> GetByAgeAsync(int age)
         {
-            var exhibits = await _exhibitService.GetByAge(age)
+            var exhibits = await _exhibitService.GetByAgeAsync(age)
                 ?? throw new ArgumentNullException("Ошибка поиска экспоната");
             
             return exhibits.Select(exhibit => new ExhibitDTO
@@ -95,7 +95,7 @@ namespace WinFormsApp_OOP_CourseProject.Controller
 
         public async Task<List<ExhibitDTO>> GetByDateAsync(string stringDate)
         {
-            var exhibits = await _exhibitService.GetByDate(stringDate)
+            var exhibits = await _exhibitService.GetByDateAsync(stringDate)
                 ?? throw new ArgumentNullException("Ошибка поиска экспоната");
             
             return exhibits.Select(exhibit => new ExhibitDTO

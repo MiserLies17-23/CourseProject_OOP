@@ -1,4 +1,6 @@
-﻿using WinFormsApp_OOP_CourseProject.Model;
+﻿using Microsoft.VisualBasic.Logging;
+using System.Diagnostics;
+using WinFormsApp_OOP_CourseProject.Model;
 using WinFormsApp_OOP_CourseProject.Repository;
 using WinFormsApp_OOP_CourseProject.Utils;
 
@@ -30,7 +32,14 @@ namespace WinFormsApp_OOP_CourseProject.Service
 
         public async Task<IEnumerable<Exhibit>> GetBySectionAsync(SectionEnum section)
         {
-            return await _exhibitRepository.GetBySectionAsync(section);
+            var exhibits = await _exhibitRepository.GetBySectionAsync(section);
+
+            foreach (var item in exhibits)
+            {
+                Debug.WriteLine(item.DateOfDiscovery);
+            }
+
+            return exhibits;
         }
 
         public async Task<Exhibit?> GetByIdAsync(int id)
@@ -41,21 +50,23 @@ namespace WinFormsApp_OOP_CourseProject.Service
             throw new ArgumentException("Указан неверный Id!");
         }
 
-        public async Task<IEnumerable<Exhibit>> GetByName(string name)
+        public async Task<IEnumerable<Exhibit>> GetByNameAsync(string name)
         {
             return await _exhibitRepository.GetByNameAsync(name);
         }
 
-        public async Task<IEnumerable<Exhibit>> GetByAge(int age)
+        public async Task<IEnumerable<Exhibit>> GetByAgeAsync(int age)
         {
             Validator.ValidateAge(age);
 
             return await _exhibitRepository.GetByAgeAsync(age);
         }
 
-        public async Task<IEnumerable<Exhibit>> GetByDate(string date)
+        public async Task<IEnumerable<Exhibit>> GetByDateAsync(string date)
         {
             DateTime currentDate = Validator.ValidateDate(date);
+
+            Debug.WriteLine(currentDate);
 
             return await _exhibitRepository.GetByDateAsync(currentDate);
         }

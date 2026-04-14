@@ -1,4 +1,5 @@
-﻿using WinFormsApp_OOP_CourseProject.Controller;
+﻿using System.Diagnostics;
+using WinFormsApp_OOP_CourseProject.Controller;
 using WinFormsApp_OOP_CourseProject.DTO;
 using WinFormsApp_OOP_CourseProject.Model;
 
@@ -39,8 +40,12 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
         private void LoadExhibitsByList(List<ExhibitDTO> exhibits)
         {
             SectionDataGridView.Rows.Clear();
+
+            string allDates = "";
             foreach (ExhibitDTO exhibit in exhibits)
             {
+                Debug.WriteLine($"ID: {exhibit.Id}, Дата из DTO: {exhibit.DateOfDiscovery}");
+
                 int rowIndex = SectionDataGridView.Rows.Add();
                 SectionDataGridView.Rows[rowIndex].Cells[0].Value = exhibit.Id;
                 SectionDataGridView.Rows[rowIndex].Cells[1].Value = exhibit.Name;
@@ -49,6 +54,8 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
                 SectionDataGridView.Rows[rowIndex].Cells[4].Value = exhibit.Description;
                 SectionDataGridView.Rows[rowIndex].Cells[5].Value = "Изменить";
                 SectionDataGridView.Rows[rowIndex].Cells[6].Value = "Удалить";
+
+                allDates += exhibit.DateOfDiscovery + '\n';
             }
         }
 
