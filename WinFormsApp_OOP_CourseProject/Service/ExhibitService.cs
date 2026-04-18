@@ -20,6 +20,10 @@ namespace WinFormsApp_OOP_CourseProject.Service
             Validator.ValidateExhibit(name, age, description,
                dateOfDiscovery, out DateTime date);
 
+            var exhibits = await _exhibitRepository.GetByNameAsync(name);
+            if (exhibits.Any())
+                throw new ArgumentException("Экспонат с таким именем уже существует!");
+
             var newExhibit = new Exhibit(section, name, age, date, description);
 
             await _exhibitRepository.AddAsync(newExhibit);
@@ -32,14 +36,7 @@ namespace WinFormsApp_OOP_CourseProject.Service
 
         public async Task<IEnumerable<Exhibit>> GetBySectionAsync(SectionEnum section)
         {
-            var exhibits = await _exhibitRepository.GetBySectionAsync(section);
-
-            foreach (var item in exhibits)
-            {
-                Debug.WriteLine(item.DateOfDiscovery);
-            }
-
-            return exhibits;
+            return await _exhibitRepository.GetBySectionAsync(section);
         }
 
         public async Task<Exhibit?> GetByIdAsync(int id)
