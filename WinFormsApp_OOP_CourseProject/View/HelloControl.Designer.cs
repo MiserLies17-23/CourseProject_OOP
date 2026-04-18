@@ -88,6 +88,7 @@
             VisitorButton.TabIndex = 4;
             VisitorButton.Text = "Посетитель";
             VisitorButton.UseVisualStyleBackColor = false;
+            VisitorButton.Click += VisitorButton_Click;
             // 
             // AdminButton
             // 

@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp_OOP_CourseProject.View.Controls
 {
-    partial class MuseumSectionControl
+    partial class AdminSectionControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

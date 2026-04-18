@@ -28,17 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            SectionTabControl = new TabControl();
             SuspendLayout();
+            // 
+            // SectionTabControl
+            // 
+            SectionTabControl.Location = new Point(0, 0);
+            SectionTabControl.Name = "SectionTabControl";
+            SectionTabControl.SelectedIndex = 0;
+            SectionTabControl.Size = new Size(815, 490);
+            SectionTabControl.TabIndex = 0;
             // 
             // VisitorControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(SectionTabControl);
             Name = "VisitorControl";
-            Size = new Size(818, 497);
+            Size = new Size(820, 500);
+            Load += VisitorControl_Load;
             ResumeLayout(false);
         }
 
         #endregion
+
+        private TabControl SectionTabControl;
     }
 }

@@ -1,11 +1,10 @@
-﻿using System.Diagnostics;
-using WinFormsApp_OOP_CourseProject.Controller;
+﻿using WinFormsApp_OOP_CourseProject.Controller;
 using WinFormsApp_OOP_CourseProject.DTO;
 using WinFormsApp_OOP_CourseProject.Model;
 
 namespace WinFormsApp_OOP_CourseProject.View.Controls
 {
-    public partial class MuseumSectionControl : UserControl
+    public partial class AdminSectionControl : UserControl
     {
 
         private readonly ExhibitController _controller;
@@ -18,7 +17,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
 
         public event Action? CloseButtonEvent;
 
-        public MuseumSectionControl(ExhibitController controller, SectionEnum section)
+        public AdminSectionControl(ExhibitController controller, SectionEnum section)
         {
             InitializeComponent();
             _controller = controller;
@@ -41,11 +40,8 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
         {
             SectionDataGridView.Rows.Clear();
 
-            string allDates = "";
             foreach (ExhibitDTO exhibit in exhibits)
             {
-                Debug.WriteLine($"ID: {exhibit.Id}, Дата из DTO: {exhibit.DateOfDiscovery}");
-
                 int rowIndex = SectionDataGridView.Rows.Add();
                 SectionDataGridView.Rows[rowIndex].Cells[0].Value = exhibit.Id;
                 SectionDataGridView.Rows[rowIndex].Cells[1].Value = exhibit.Name;
@@ -54,8 +50,6 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
                 SectionDataGridView.Rows[rowIndex].Cells[4].Value = exhibit.Description;
                 SectionDataGridView.Rows[rowIndex].Cells[5].Value = "Изменить";
                 SectionDataGridView.Rows[rowIndex].Cells[6].Value = "Удалить";
-
-                allDates += exhibit.DateOfDiscovery + '\n';
             }
         }
 

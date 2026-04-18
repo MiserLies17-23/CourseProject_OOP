@@ -4,26 +4,24 @@ using WinFormsApp_OOP_CourseProject.Utils;
 
 namespace WinFormsApp_OOP_CourseProject.View.Controls
 {
-    public partial class AdminControl : UserControl
+    public partial class VisitorControl : UserControl
     {
         private readonly ExhibitController _controller;
 
-        private readonly Dictionary<SectionEnum, MuseumSectionControl> _sections;
+        private readonly Dictionary<SectionEnum, VisitorSectionControl> _sections;
 
-        public event Action<SectionEnum>? AddUserRequested;
-
-        public event Func<int, Task>? ChangeUserRequested;
+        public event Func<int, Task>? ViewButtonRequest;
 
         public event Action? CloseFormRequest;
 
-        public AdminControl(ExhibitController controller)
+        public VisitorControl(ExhibitController controller)
         {
             InitializeComponent();
             _controller = controller;
             _sections = new();
         }
 
-        private void AdminControl_Load(object sender, EventArgs e)
+        private void VisitorControl_Load(object sender, EventArgs e)
         {
             InitializeSectionTabs();
         }
@@ -34,15 +32,14 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
 
             foreach (SectionEnum section in Enum.GetValues(typeof(SectionEnum)))
             {
-                var control = new MuseumSectionControl(_controller, section);
+                var control = new VisitorSectionControl(_controller, section);
                 _sections[section] = control;
 
-                control.AddButtonEvent += (section) => AddUserRequested?.Invoke(section);
                 control.CloseButtonEvent += () => CloseFormRequest?.Invoke();
-                control.ChangeButtonEvent += async (id) =>
+                control.ViewButtonEvent += async (id) =>
                 {
-                    if (ChangeUserRequested != null)
-                        await ChangeUserRequested(id);
+                    if (ViewButtonRequest != null)
+                        await ViewButtonRequest(id);
                 };
 
                 control.Dock = DockStyle.Fill;

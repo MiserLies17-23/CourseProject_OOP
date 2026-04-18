@@ -37,6 +37,7 @@
             ClientSize = new Size(782, 483);
             Name = "VisitorForm";
             Text = "VisitorForm";
+            Load += VisitorForm_Load;
             ResumeLayout(false);
         }
 
