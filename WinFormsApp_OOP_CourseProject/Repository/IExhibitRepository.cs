@@ -21,5 +21,7 @@ namespace WinFormsApp_OOP_CourseProject.Repository
         Task UpdateAsync(Exhibit editExhibit);
 
         Task DeleteAsync(int id);
+
+        Task DeleteAllBySectionAsync(SectionEnum section);
     }
 }

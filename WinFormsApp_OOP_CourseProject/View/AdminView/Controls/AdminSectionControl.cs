@@ -55,7 +55,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
 
         private async void SearchButton_Click(object sender, EventArgs e)
         {
-            if(CriteriaComboBox.SelectedIndex == 0)
+            if (CriteriaComboBox.SelectedIndex == 0)
             {
                 if (!int.TryParse(CriteriaValueTextBox.Text, out int id))
                     throw new ArgumentException("Id должен быть числом!");
@@ -67,7 +67,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             if (CriteriaComboBox.SelectedIndex == 1)
             {
                 var exhibits = await _controller.GetByNameAsync(CriteriaValueTextBox.Text);
-                
+
                 LoadExhibitsByList(exhibits);
             }
             if (CriteriaComboBox.SelectedIndex == 2)
@@ -129,10 +129,25 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
         {
             AddButtonEvent?.Invoke(_section);
         }
+        private async void DeleteAllButton_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Вы действительно хотите удалить все экспонаты данной секции?",
+                "Согласие на удаление",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button2);
+            if (result == DialogResult.Yes)
+            {
+                await _controller.DeleteAllBySectionAsync(_section);
+                await LoadAllExhibitsAsync();
+            }
+        }
 
         private void BackButton_Click(object sender, EventArgs e)
         {
             CloseButtonEvent?.Invoke();
         }
+
+        
     }
 }

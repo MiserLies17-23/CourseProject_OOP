@@ -48,6 +48,7 @@
             BackButton = new Button();
             AddButton = new Button();
             ExhibitsLabel = new Label();
+            DeleteAllButton = new Button();
             ((System.ComponentModel.ISupportInitialize)SectionDataGridView).BeginInit();
             ExhibitSearchPanel.SuspendLayout();
             SuspendLayout();
@@ -194,12 +195,14 @@
             // 
             // SearchButton
             // 
+            SearchButton.BackColor = SystemColors.MenuHighlight;
+            SearchButton.ForeColor = SystemColors.ButtonFace;
             SearchButton.Location = new Point(488, 41);
             SearchButton.Name = "SearchButton";
             SearchButton.Size = new Size(94, 29);
             SearchButton.TabIndex = 1;
             SearchButton.Text = "Найти";
-            SearchButton.UseVisualStyleBackColor = true;
+            SearchButton.UseVisualStyleBackColor = false;
             SearchButton.Click += SearchButton_Click;
             // 
             // ExhibitSearchLabel
@@ -224,12 +227,14 @@
             // 
             // AddButton
             // 
+            AddButton.BackColor = SystemColors.MenuHighlight;
+            AddButton.ForeColor = SystemColors.ButtonFace;
             AddButton.Location = new Point(294, 392);
             AddButton.Name = "AddButton";
             AddButton.Size = new Size(94, 29);
             AddButton.TabIndex = 4;
             AddButton.Text = "Добавить";
-            AddButton.UseVisualStyleBackColor = true;
+            AddButton.UseVisualStyleBackColor = false;
             AddButton.Click += AddButton_Click;
             // 
             // ExhibitsLabel
@@ -242,17 +247,30 @@
             ExhibitsLabel.TabIndex = 5;
             ExhibitsLabel.Text = "Список экспонатов";
             // 
-            // MuseumSectionControl
+            // DeleteAllButton
+            // 
+            DeleteAllButton.BackColor = Color.Red;
+            DeleteAllButton.ForeColor = SystemColors.ButtonFace;
+            DeleteAllButton.Location = new Point(588, 392);
+            DeleteAllButton.Name = "DeleteAllButton";
+            DeleteAllButton.Size = new Size(159, 29);
+            DeleteAllButton.TabIndex = 6;
+            DeleteAllButton.Text = "Очистить таблицу";
+            DeleteAllButton.UseVisualStyleBackColor = false;
+            DeleteAllButton.Click += DeleteAllButton_Click;
+            // 
+            // AdminSectionControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(DeleteAllButton);
             Controls.Add(ExhibitsLabel);
             Controls.Add(AddButton);
             Controls.Add(BackButton);
             Controls.Add(ExhibitSearchPanel);
             Controls.Add(SectionNameLabel);
             Controls.Add(SectionDataGridView);
-            Name = "MuseumSectionControl";
+            Name = "AdminSectionControl";
             Size = new Size(750, 450);
             Load += MuseumSectionControl_Load;
             ((System.ComponentModel.ISupportInitialize)SectionDataGridView).EndInit();
@@ -284,5 +302,6 @@
         private DataGridViewTextBoxColumn DiscriptionColumn;
         private DataGridViewButtonColumn EditButtonColumn;
         private DataGridViewButtonColumn DeleteButtonColumn;
+        private Button DeleteAllButton;
     }
 }

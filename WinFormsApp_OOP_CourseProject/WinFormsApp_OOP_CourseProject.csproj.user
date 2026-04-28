@@ -1,31 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="View\Controls\AddExhibitControl.cs">
+    <Compile Update="View\AdminView\Controls\AddExhibitControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\Controls\AdminControl.cs">
+    <Compile Update="View\AdminView\Controls\AdminControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\AdminForm.cs">
+    <Compile Update="View\AdminView\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\Controls\EditExhibitControl.cs">
+    <Compile Update="View\AdminView\Controls\EditExhibitControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\Controls\HelloControl.cs">
+    <Compile Update="View\HelloControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\Controls\MuseumSectionControl.cs">
+    <Compile Update="View\AdminView\Controls\AdminSectionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\Controls\VisitorControl.cs">
+    <Compile Update="View\VisitorView\Controls\ViewExhibitControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="View\VisitorView\Controls\VisitorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="View\VisitorView\Controls\VisitorSectionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\VisitorForm.cs">
+    <Compile Update="View\VisitorView\VisitorForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

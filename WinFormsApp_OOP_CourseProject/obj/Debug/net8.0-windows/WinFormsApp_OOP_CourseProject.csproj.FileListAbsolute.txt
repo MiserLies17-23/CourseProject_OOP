@@ -6,7 +6,6 @@ C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.Controls.AdminForm.resources
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.Controls.AdminControl.resources
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.HelloControl.resources
-C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.Controls.MuseumSectionControl.resources
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.Controls.VisitorControl.resources
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.MainForm.resources
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.csproj.GenerateResource.cache
@@ -40,3 +39,7 @@ C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.Controls.AddExhibitControl.resources
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.Controls.EditExhibitControl.resources
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.VisitorForm.resources
+C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.Controls.AdminSectionControl.resources
+C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.VisitorView.Controls.ViewExhibitControl.resources
+C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.Controls.VisitorSectionControl.resources
+C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.Properties.Resources.resources

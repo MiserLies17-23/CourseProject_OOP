@@ -95,5 +95,10 @@ namespace WinFormsApp_OOP_CourseProject.Service
 
             await _exhibitRepository.DeleteAsync(id);
         }
+
+        public async Task DeleteAllBySectionAsync(SectionEnum section)
+        {
+            await _exhibitRepository.DeleteAllBySectionAsync(section);
+        }
     }
 }

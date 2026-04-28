@@ -9,12 +9,9 @@ namespace WinFormsApp_OOP_CourseProject.Repository
     {
         private readonly string _connectionString;
 
-        private readonly List<Exhibit> _exhibits;
-
         public ExhibitRepository()
         {
             _connectionString = AppConfig.ConnectionString;
-            _exhibits = [];
         }
 
         private NpgsqlConnection CreateConnection()
@@ -112,9 +109,13 @@ namespace WinFormsApp_OOP_CourseProject.Repository
             await connection.ExecuteAsync(sql, new { Id = exhibitId });
         }
 
-        public int GetCount()
+        public async Task DeleteAllBySectionAsync(SectionEnum section)
         {
-            return _exhibits.Count;
+            var exhibits = (IEnumerable<Exhibit>)GetBySectionAsync(section);
+            foreach(var exhib in exhibits)
+            { 
+                await DeleteAsync(exhib.Id); 
+            }
         }
     }
 }

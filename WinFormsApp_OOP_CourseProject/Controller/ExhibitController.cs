@@ -123,5 +123,10 @@ namespace WinFormsApp_OOP_CourseProject.Controller
         {
             await _exhibitService.DeleteAsync(exhibitId);
         }
+
+        public async Task DeleteAllBySectionAsync(SectionEnum section)
+        {
+            await _exhibitService.DeleteAllBySectionAsync(section);
+        }
     }
 }
