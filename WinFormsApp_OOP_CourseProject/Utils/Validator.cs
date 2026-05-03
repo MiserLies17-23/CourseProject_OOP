@@ -2,6 +2,9 @@
 
 namespace WinFormsApp_OOP_CourseProject.Utils
 {
+    /// <summary>
+    /// Статический утилитный класс для валидации значений параметров модели
+    /// </summary>
     public static class Validator
     {
         /// <summary>

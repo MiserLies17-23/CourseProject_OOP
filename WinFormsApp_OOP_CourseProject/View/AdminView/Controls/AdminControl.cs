@@ -47,7 +47,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
 
                 control.Dock = DockStyle.Fill;
 
-                var tabPage = new TabPage(MuseumSectionExtension.GetDisplyName(section));
+                var tabPage = new TabPage(MuseumSectionExtension.GetDisplayName(section));
                 tabPage.Controls.Add(control);
 
                 SectionTabControl.TabPages.Add(tabPage);
