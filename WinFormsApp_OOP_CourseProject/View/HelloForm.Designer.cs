@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp_OOP_CourseProject
 {
-    partial class MainForm
+    partial class HelloForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,18 +30,18 @@
         {
             SuspendLayout();
             // 
-            // MainForm
+            // HelloForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(762, 450);
+            ClientSize = new Size(597, 328);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "MainForm";
+            Name = "HelloForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "MainForm";
-            Load += MainForm_Load;
+            Text = "Приветственная форма";
+            Load += HelloForm_Load;
             ResumeLayout(false);
         }
 

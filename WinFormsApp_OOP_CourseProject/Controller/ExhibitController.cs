@@ -27,8 +27,7 @@ namespace WinFormsApp_OOP_CourseProject.Controller
         /// <exception cref="ArgumentException"> Выбрасывается, если репозиторий пуст </exception>
         public async Task<List<ExhibitDTO>> GetAllAsync()
         {
-            var exhibits = await _exhibitService.GetAllAsync()
-                ?? throw new ArgumentException("Репозиторий пуст!");
+            var exhibits = await _exhibitService.GetAllAsync();
 
             return exhibits.Select(exhibit => new ExhibitDTO
             {
@@ -49,8 +48,7 @@ namespace WinFormsApp_OOP_CourseProject.Controller
         /// <exception cref="ArgumentException"> Выбрасывается, если список секции пуст </exception>
         public async Task<List<ExhibitDTO>> GetBySectionAsync(SectionEnum section)
         {
-            var exhibits = await _exhibitService.GetBySectionAsync(section)
-                ?? throw new ArgumentException("Список секции пуст!");
+            var exhibits = await _exhibitService.GetBySectionAsync(section);
 
             return exhibits.Select(exhibit => new ExhibitDTO
             {
@@ -71,12 +69,11 @@ namespace WinFormsApp_OOP_CourseProject.Controller
         /// <exception cref="ArgumentNullException"> Выбрасывается, если экспонат не найден </exception>
         public async Task<ExhibitDTO> GetByIdAsync(int exhibitId)
         {
-            var exhibit = await _exhibitService.GetByIdAsync(exhibitId)
-                ?? throw new ArgumentNullException("Ошибка поиска экспоната");
+            var exhibit = await _exhibitService.GetByIdAsync(exhibitId);
 
             return new ExhibitDTO
             {
-                Id = exhibit.Id,
+                Id = exhibit!.Id,
                 Section = exhibit.Section,
                 Name = exhibit.Name,
                 Age = exhibit.Age,
@@ -93,8 +90,7 @@ namespace WinFormsApp_OOP_CourseProject.Controller
         /// <exception cref="ArgumentNullException"> Выбрасывается, если экспонаты не найдены </exception>
         public async Task<List<ExhibitDTO>> GetByNameAsync(string name)
         {
-            var exhibits = await _exhibitService.GetByNameAsync(name)
-                ?? throw new ArgumentNullException("Ошибка поиска экспоната");
+            var exhibits = await _exhibitService.GetByNameAsync(name);
 
             return exhibits.Select(exhibit => new ExhibitDTO
             {
@@ -115,8 +111,7 @@ namespace WinFormsApp_OOP_CourseProject.Controller
         /// <exception cref="ArgumentNullException" >Выбрасывается, если экспонаты не найдены </exception>
         public async Task<List<ExhibitDTO>> GetByAgeAsync(int age)
         {
-            var exhibits = await _exhibitService.GetByAgeAsync(age)
-                ?? throw new ArgumentNullException("Ошибка поиска экспоната");
+            var exhibits = await _exhibitService.GetByAgeAsync(age);
 
             return exhibits.Select(exhibit => new ExhibitDTO
             {
@@ -137,8 +132,7 @@ namespace WinFormsApp_OOP_CourseProject.Controller
         /// <exception cref="ArgumentNullException"> Выбрасывается, если экспонаты не найдены </exception>
         public async Task<List<ExhibitDTO>> GetByDateAsync(string stringDate)
         {
-            var exhibits = await _exhibitService.GetByDateAsync(stringDate)
-                ?? throw new ArgumentNullException("Ошибка поиска экспоната");
+            var exhibits = await _exhibitService.GetByDateAsync(stringDate);
 
             return exhibits.Select(exhibit => new ExhibitDTO
             {

@@ -70,12 +70,17 @@ namespace WinFormsApp_OOP_CourseProject.Service
         /// </summary>
         /// <param name="id"> id объекта </param>
         /// <returns> Результат задачи: объект с указанным id </returns>
-        public async Task<Exhibit?> GetByIdAsync(int id)
+        public async Task<Exhibit> GetByIdAsync(int id)
         {
-            if (id >= 0 )
-                return await _exhibitRepository.GetByIdAsync(id);
+            if (id < 0)
+                throw new ArgumentException("Id не может быть отрицательным!");
 
-            throw new ArgumentException("Указан неверный Id!");
+            var exhibit = await _exhibitRepository.GetByIdAsync(id);
+
+            if (exhibit == null)
+                throw new ArgumentException($"Экспонат с id = {id} не найден!");
+
+            return exhibit;
         }
 
         /// <summary>
@@ -154,7 +159,11 @@ namespace WinFormsApp_OOP_CourseProject.Service
         public async Task DeleteAsync(int id)
         {
             if (id < 0)
-                throw new ArgumentException("Указан неверный Id!");
+                throw new ArgumentException("Id не может быть отрицательным!");
+
+            var exhibit = await _exhibitRepository.GetByIdAsync(id);
+            if (exhibit == null)
+                throw new ArgumentException($"Экспонат с id = {id} не найден!");
 
             await _exhibitRepository.DeleteAsync(id);
         }

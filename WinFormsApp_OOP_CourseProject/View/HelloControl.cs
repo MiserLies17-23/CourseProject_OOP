@@ -6,30 +6,22 @@ namespace WinFormsApp_OOP_CourseProject
 {
     public partial class HelloControl : UserControl
     {
-        private readonly ExhibitController _controller;
 
-        public HelloControl(ExhibitController controller)
+        public event Action? CloseRequst;
+
+        public HelloControl()
         {
             InitializeComponent();
-            _controller = controller;
         }
 
-        private void AdminButton_Click(object sender, EventArgs e)
-        {
-            var adminForm = new AdminForm(_controller);
-            adminForm.ShowDialog();
-        }
-
-        private void VisitorButton_Click(object sender, EventArgs e)
-        {
-            var visitorForm = new VisitorForm(_controller);
-            visitorForm.ShowDialog();
-        }
-        
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            CloseRequst?.Invoke();
+        }
     }
 }

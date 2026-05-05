@@ -17,13 +17,16 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
         /// Конструктор с параметром
         /// </summary>
         /// <param name="controller"> Контроллер для работы с экспонатами </param>
-        public AdminForm(ExhibitController controller)
+        public AdminForm()
         {
             InitializeComponent();
-            _controller = controller;
-            _control = new AdminControl(controller);
-            _addControl = new AddExhibitControl(controller);
-            _editControl = new EditExhibitControl(controller);
+
+            ShowHelloForm();
+
+            _controller = new ExhibitController();
+            _control = new AdminControl(_controller);
+            _addControl = new AddExhibitControl(_controller);
+            _editControl = new EditExhibitControl(_controller);
 
             _control.AddUserRequested += OnAddUserRequested;
             _control.ChangeUserRequested += OnEditExhibitRequest;
@@ -37,6 +40,12 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
         {
             _control.Dock = DockStyle.Fill;
             Controls.Add(_control);
+        }
+
+        private void ShowHelloForm()
+        {
+            using var helloForm = new HelloForm();
+            helloForm.ShowDialog(); // Блокирует AdminForm до закрытия HelloForm
         }
 
         /// <summary>
@@ -105,7 +114,8 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             {
                 Controls.Remove((Control?)control);
             }
-            Close();
+            //Close();
+            Application.Exit();
         }
     }
 }

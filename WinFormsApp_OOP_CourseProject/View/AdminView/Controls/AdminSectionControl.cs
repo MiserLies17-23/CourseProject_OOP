@@ -55,36 +55,43 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
 
         private async void SearchButton_Click(object sender, EventArgs e)
         {
-            if (CriteriaComboBox.SelectedIndex == 0)
+            try
             {
-                if (!int.TryParse(CriteriaValueTextBox.Text, out int id))
-                    throw new ArgumentException("Id должен быть числом!");
+                if (CriteriaComboBox.SelectedIndex == 0)
+                {
+                    if (!int.TryParse(CriteriaValueTextBox.Text, out int id))
+                        throw new ArgumentException("Id должен быть числом!");
 
-                var exhibits = (List<ExhibitDTO>)[await _controller.GetByIdAsync(id)];
+                    var exhibits = (List<ExhibitDTO>)[await _controller.GetByIdAsync(id)];
 
-                LoadExhibitsByList(exhibits);
+                    LoadExhibitsByList(exhibits);
+                }
+                if (CriteriaComboBox.SelectedIndex == 1)
+                {
+                    var exhibits = await _controller.GetByNameAsync(CriteriaValueTextBox.Text);
+
+                    LoadExhibitsByList(exhibits);
+                }
+                if (CriteriaComboBox.SelectedIndex == 2)
+                {
+                    if (!int.TryParse(CriteriaValueTextBox.Text, out int age))
+                        throw new ArgumentException("Id должен быть числом!");
+
+                    var exhibits = await _controller.GetByAgeAsync(age);
+
+                    LoadExhibitsByList(exhibits);
+
+                }
+                if (CriteriaComboBox.SelectedIndex == 3)
+                {
+                    var exhibits = await _controller.GetByDateAsync(CriteriaValueTextBox.Text);
+
+                    LoadExhibitsByList(exhibits);
+                }
             }
-            if (CriteriaComboBox.SelectedIndex == 1)
+            catch (Exception ex)
             {
-                var exhibits = await _controller.GetByNameAsync(CriteriaValueTextBox.Text);
-
-                LoadExhibitsByList(exhibits);
-            }
-            if (CriteriaComboBox.SelectedIndex == 2)
-            {
-                if (!int.TryParse(CriteriaValueTextBox.Text, out int age))
-                    throw new ArgumentException("Id должен быть числом!");
-
-                var exhibits = await _controller.GetByAgeAsync(age);
-
-                LoadExhibitsByList(exhibits);
-
-            }
-            if (CriteriaComboBox.SelectedIndex == 3)
-            {
-                var exhibits = await _controller.GetByDateAsync(CriteriaValueTextBox.Text);
-
-                LoadExhibitsByList(exhibits);
+                MessageBox.Show(ex.Message, "Ошибка поиска экспоната", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -111,6 +118,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
                     {
                         await _controller.DeleteAsync((int)SectionDataGridView.Rows[e.RowIndex].Cells[0].Value);
                         await LoadAllExhibitsAsync();
+                        MessageBox.Show("Экспонат успешно удалён!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     }
                 }
                 else if (e.RowIndex >= 0 && e.ColumnIndex == 5)
@@ -140,6 +148,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             {
                 await _controller.DeleteAllBySectionAsync(_section);
                 await LoadAllExhibitsAsync();
+                MessageBox.Show("Все экспонаты секции удалены!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
 

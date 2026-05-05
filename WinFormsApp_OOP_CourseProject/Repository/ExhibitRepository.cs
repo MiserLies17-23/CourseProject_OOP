@@ -14,6 +14,7 @@ namespace WinFormsApp_OOP_CourseProject.Repository
         /// <summary> Строка подключения к бд </summary>
         private readonly string _connectionString;
 
+
         /// <summary>
         /// Конструктор по умолчанию
         /// </summary>
@@ -172,7 +173,7 @@ namespace WinFormsApp_OOP_CourseProject.Repository
         /// <returns> Задача, представляющая асинхронную операцию </returns>
         public async Task DeleteAllBySectionAsync(SectionEnum section)
         {
-            var exhibits = (IEnumerable<Exhibit>)GetBySectionAsync(section);
+            var exhibits = await GetBySectionAsync(section);
             foreach(var exhib in exhibits)
             { 
                 await DeleteAsync(exhib.Id); 

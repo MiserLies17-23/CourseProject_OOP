@@ -221,7 +221,7 @@
             BackButton.Name = "BackButton";
             BackButton.Size = new Size(94, 29);
             BackButton.TabIndex = 3;
-            BackButton.Text = "Назад";
+            BackButton.Text = "Выход";
             BackButton.UseVisualStyleBackColor = true;
             BackButton.Click += BackButton_Click;
             // 
