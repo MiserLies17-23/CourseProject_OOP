@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HelloForm));
             SuspendLayout();
             // 
             // HelloForm
@@ -36,6 +37,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(597, 328);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "HelloForm";

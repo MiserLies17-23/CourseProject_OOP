@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             SuspendLayout();
             // 
             // AdminForm
@@ -36,10 +37,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(782, 483);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "AdminForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "AdminForm";
+            Text = "Главная форма музея";
             TopMost = true;
             Load += AdminForm_Load;
             ResumeLayout(false);
