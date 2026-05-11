@@ -1,8 +1,4 @@
-﻿using WinFormsApp_OOP_CourseProject.Controller;
-using WinFormsApp_OOP_CourseProject.View;
-using WinFormsApp_OOP_CourseProject.View.Controls;
-
-namespace WinFormsApp_OOP_CourseProject
+﻿namespace WinFormsApp_OOP_CourseProject
 {
     public partial class HelloControl : UserControl
     {

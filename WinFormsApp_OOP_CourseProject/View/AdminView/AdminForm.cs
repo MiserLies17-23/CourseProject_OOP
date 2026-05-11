@@ -114,7 +114,6 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             {
                 Controls.Remove((Control?)control);
             }
-            //Close();
             Application.Exit();
         }
     }

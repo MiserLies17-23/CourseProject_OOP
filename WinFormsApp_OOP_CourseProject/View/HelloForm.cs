@@ -7,15 +7,22 @@ namespace WinFormsApp_OOP_CourseProject
     /// </summary>
     public partial class HelloForm : Form
     {
+        /// <summary> Таймер для автоматического закрытия формы </summary>
         private readonly System.Windows.Forms.Timer _timer;
+        
+        /// <summary> Объект HelloControl для отображения содержимого приветственной формы </summary>
         private readonly HelloControl _helloControl;
+        
+        /// <summary> Флаг для автоматического закрытия формы </summary>
         private bool _isCloseRequested = false;
 
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
         public HelloForm()
         {
             InitializeComponent();
 
-            // Инициализируем таймер
             _timer = new System.Windows.Forms.Timer();
             _timer.Interval = 10000; 
             _timer.Tick += Timer_Tick;
@@ -24,13 +31,24 @@ namespace WinFormsApp_OOP_CourseProject
             _helloControl.CloseRequst += OnCloseRequest;
         }
 
+        /// <summary>
+        /// Обработчик загрузки формы. 
+        /// Выводит содержимое HelloController и запускает таймер
+        /// </summary>
+        /// <param name="sender"> Объект отправитель (форма) </param>
+        /// <param name="e"> Аргументы событий (не используются) </param>
         public void HelloForm_Load(object sender, EventArgs e)
         {
             _helloControl.Dock = DockStyle.Fill;
             Controls.Add(_helloControl);
-            _timer.Start(); // Запускаем таймер
+            _timer.Start(); 
         }
 
+        /// <summary>
+        /// Метод для автоматического закрытия формы
+        /// </summary>
+        /// <param name="sender"> Объект-отправитель </param>
+        /// <param name="e"> Аргументы событий (не используются) </param>
         private void Timer_Tick(object? sender, EventArgs e)
         {
             _timer.Stop();
@@ -40,11 +58,14 @@ namespace WinFormsApp_OOP_CourseProject
             }
         }
 
+        /// <summary>
+        /// Обрбаотчик закрытия формы для события HelloController
+        /// </summary>
         private void OnCloseRequest()
         {
             _isCloseRequested = true;
             _timer.Stop();
-            Close(); // Закрываем по кнопке
+            Close();
         }
     }
 }

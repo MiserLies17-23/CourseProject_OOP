@@ -29,13 +29,6 @@
         private void InitializeComponent()
         {
             SectionDataGridView = new DataGridView();
-            IdColumn = new DataGridViewTextBoxColumn();
-            NameColumn = new DataGridViewTextBoxColumn();
-            AgeColumn = new DataGridViewTextBoxColumn();
-            DateOfDiscoveryColumn = new DataGridViewTextBoxColumn();
-            DiscriptionColumn = new DataGridViewTextBoxColumn();
-            EditButtonColumn = new DataGridViewButtonColumn();
-            DeleteButtonColumn = new DataGridViewButtonColumn();
             SectionNameLabel = new Label();
             ExhibitSearchPanel = new Panel();
             ClearButton = new Button();
@@ -49,6 +42,14 @@
             AddButton = new Button();
             ExhibitsLabel = new Label();
             DeleteAllButton = new Button();
+            SaveButton = new Button();
+            IdColumn = new DataGridViewTextBoxColumn();
+            NameColumn = new DataGridViewTextBoxColumn();
+            AgeColumn = new DataGridViewTextBoxColumn();
+            DateOfDiscoveryColumn = new DataGridViewTextBoxColumn();
+            DiscriptionColumn = new DataGridViewTextBoxColumn();
+            EditButtonColumn = new DataGridViewButtonColumn();
+            DeleteButtonColumn = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)SectionDataGridView).BeginInit();
             ExhibitSearchPanel.SuspendLayout();
             SuspendLayout();
@@ -68,59 +69,6 @@
             SectionDataGridView.Size = new Size(744, 198);
             SectionDataGridView.TabIndex = 0;
             SectionDataGridView.CellContentClick += SectionDataGridView_CellContentClick;
-            // 
-            // IdColumn
-            // 
-            IdColumn.HeaderText = "Id";
-            IdColumn.MinimumWidth = 6;
-            IdColumn.Name = "IdColumn";
-            IdColumn.Width = 60;
-            // 
-            // NameColumn
-            // 
-            NameColumn.HeaderText = "Название";
-            NameColumn.MinimumWidth = 6;
-            NameColumn.Name = "NameColumn";
-            NameColumn.Width = 125;
-            // 
-            // AgeColumn
-            // 
-            AgeColumn.HeaderText = "Возраст";
-            AgeColumn.MinimumWidth = 6;
-            AgeColumn.Name = "AgeColumn";
-            AgeColumn.Width = 75;
-            // 
-            // DateOfDiscoveryColumn
-            // 
-            DateOfDiscoveryColumn.HeaderText = "Дата обнаружения";
-            DateOfDiscoveryColumn.MinimumWidth = 6;
-            DateOfDiscoveryColumn.Name = "DateOfDiscoveryColumn";
-            DateOfDiscoveryColumn.Width = 110;
-            // 
-            // DiscriptionColumn
-            // 
-            DiscriptionColumn.HeaderText = "Описание";
-            DiscriptionColumn.MinimumWidth = 6;
-            DiscriptionColumn.Name = "DiscriptionColumn";
-            DiscriptionColumn.Width = 170;
-            // 
-            // EditButtonColumn
-            // 
-            EditButtonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            EditButtonColumn.HeaderText = "Изменить";
-            EditButtonColumn.MinimumWidth = 6;
-            EditButtonColumn.Name = "EditButtonColumn";
-            EditButtonColumn.Width = 125;
-            // 
-            // DeleteButtonColumn
-            // 
-            DeleteButtonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            DeleteButtonColumn.HeaderText = "Удалить";
-            DeleteButtonColumn.MinimumWidth = 6;
-            DeleteButtonColumn.Name = "DeleteButtonColumn";
-            DeleteButtonColumn.Resizable = DataGridViewTriState.True;
-            DeleteButtonColumn.SortMode = DataGridViewColumnSortMode.Automatic;
-            DeleteButtonColumn.Width = 125;
             // 
             // SectionNameLabel
             // 
@@ -259,10 +207,76 @@
             DeleteAllButton.UseVisualStyleBackColor = false;
             DeleteAllButton.Click += DeleteAllButton_Click;
             // 
+            // SaveButton
+            // 
+            SaveButton.BackColor = Color.LimeGreen;
+            SaveButton.ForeColor = SystemColors.ButtonFace;
+            SaveButton.Location = new Point(588, 152);
+            SaveButton.Name = "SaveButton";
+            SaveButton.Size = new Size(159, 29);
+            SaveButton.TabIndex = 7;
+            SaveButton.Text = "Сохранить отчёт";
+            SaveButton.UseVisualStyleBackColor = false;
+            SaveButton.Click += SaveButton_Click;
+            // 
+            // IdColumn
+            // 
+            IdColumn.HeaderText = "Id";
+            IdColumn.MinimumWidth = 6;
+            IdColumn.Name = "IdColumn";
+            IdColumn.Width = 60;
+            // 
+            // NameColumn
+            // 
+            NameColumn.HeaderText = "Название";
+            NameColumn.MinimumWidth = 6;
+            NameColumn.Name = "NameColumn";
+            NameColumn.Width = 125;
+            // 
+            // AgeColumn
+            // 
+            AgeColumn.HeaderText = "Возраст";
+            AgeColumn.MinimumWidth = 6;
+            AgeColumn.Name = "AgeColumn";
+            AgeColumn.Width = 75;
+            // 
+            // DateOfDiscoveryColumn
+            // 
+            DateOfDiscoveryColumn.HeaderText = "Дата обнаружения";
+            DateOfDiscoveryColumn.MinimumWidth = 6;
+            DateOfDiscoveryColumn.Name = "DateOfDiscoveryColumn";
+            DateOfDiscoveryColumn.Width = 110;
+            // 
+            // DiscriptionColumn
+            // 
+            DiscriptionColumn.HeaderText = "Описание";
+            DiscriptionColumn.MinimumWidth = 6;
+            DiscriptionColumn.Name = "DiscriptionColumn";
+            DiscriptionColumn.Width = 170;
+            // 
+            // EditButtonColumn
+            // 
+            EditButtonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            EditButtonColumn.HeaderText = "Изменить";
+            EditButtonColumn.MinimumWidth = 6;
+            EditButtonColumn.Name = "EditButtonColumn";
+            EditButtonColumn.Width = 90;
+            // 
+            // DeleteButtonColumn
+            // 
+            DeleteButtonColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            DeleteButtonColumn.HeaderText = "Удалить";
+            DeleteButtonColumn.MinimumWidth = 6;
+            DeleteButtonColumn.Name = "DeleteButtonColumn";
+            DeleteButtonColumn.Resizable = DataGridViewTriState.True;
+            DeleteButtonColumn.SortMode = DataGridViewColumnSortMode.Automatic;
+            DeleteButtonColumn.Width = 90;
+            // 
             // AdminSectionControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(SaveButton);
             Controls.Add(DeleteAllButton);
             Controls.Add(ExhibitsLabel);
             Controls.Add(AddButton);
@@ -295,6 +309,8 @@
         private Label CriteriaLabel;
         private ComboBox CriteriaComboBox;
         private Label ExhibitsLabel;
+        private Button DeleteAllButton;
+        private Button SaveButton;
         private DataGridViewTextBoxColumn IdColumn;
         private DataGridViewTextBoxColumn NameColumn;
         private DataGridViewTextBoxColumn AgeColumn;
@@ -302,6 +318,5 @@
         private DataGridViewTextBoxColumn DiscriptionColumn;
         private DataGridViewButtonColumn EditButtonColumn;
         private DataGridViewButtonColumn DeleteButtonColumn;
-        private Button DeleteAllButton;
     }
 }

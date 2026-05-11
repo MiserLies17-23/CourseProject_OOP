@@ -1,4 +1,5 @@
-﻿using WinFormsApp_OOP_CourseProject.Controller;
+﻿using System.Text;
+using WinFormsApp_OOP_CourseProject.Controller;
 using WinFormsApp_OOP_CourseProject.DTO;
 using WinFormsApp_OOP_CourseProject.Model;
 
@@ -101,6 +102,80 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             CriteriaValueTextBox.Text = "";
 
             await LoadAllExhibitsAsync();
+        }
+        private async void SaveButton_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Сохранить список экспонатов в CSV?", "Подтверждение",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes)
+                return;
+
+            using var saveDialog = new SaveFileDialog
+            {
+                Filter = "CSV files (*.csv)|*.csv",
+                FileName = $"{_section}_exhibits_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.csv"
+            };
+
+            if (saveDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            await SaveExhibitsToCsvAsync(saveDialog.FileName);
+        }
+
+        private async Task SaveExhibitsToCsvAsync(string filePath)
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+
+                var exhibits = await _controller.GetBySectionAsync(_section);
+
+                var csv = new StringBuilder();
+
+                // Заголовки (будут в ячейках A1, B1, C1...)
+                csv.AppendLine("\"Id\";\"Название\";\"Возраст\";\"Дата обнаружения\";\"Описание\"");
+
+                // Данные (каждое значение попадёт в свою ячейку)
+                foreach (var exhibit in exhibits)
+                {
+                    csv.Append($"{EscapeCsvValue(exhibit.Id)};");
+                    csv.Append($"{EscapeCsvValue(exhibit.Name!)};");
+                    csv.Append($"{EscapeCsvValue(exhibit.Age)};");
+                    csv.Append($"{EscapeCsvValue(exhibit.DateOfDiscovery!)};");
+                    csv.AppendLine(EscapeCsvValue(exhibit.Description!));
+                }
+
+                // UTF-8 с BOM для корректной работы Excel с русскими буквами
+                await File.WriteAllTextAsync(filePath, csv.ToString(), Encoding.UTF8);
+
+                MessageBox.Show($"Сохранено {exhibits.Count} записей\nФайл: {Path.GetFileName(filePath)}",
+                    "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private string EscapeCsvValue(object value)
+        {
+            if (value == null) return "";
+
+            string? str = value.ToString();
+            if (string.IsNullOrEmpty(str)) return "";
+
+            if (str.Contains('"') || str.Contains(';') || str.Contains('\n'))
+            {
+                return $"\"{str.Replace("\"", "\"\"")}\"";
+            }
+
+            return str;
         }
 
         private async void SectionDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
