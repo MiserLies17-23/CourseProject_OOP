@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RYUVD63QAGM=",
+  "dgSpecHash": "02QQsjGH1cM=",
   "success": true,
   "projectFilePath": "C:\\Users\\THUNDEROBOT\\source\\repos\\WinFormsApp_OOP_CourseProject\\WinFormsApp_OOP_CourseProject\\WinFormsApp_OOP_CourseProject.csproj",
   "expectedPackageFiles": [
@@ -20,6 +20,7 @@
     "C:\\Users\\THUNDEROBOT\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "C:\\Users\\THUNDEROBOT\\.nuget\\packages\\npgsql\\8.0.0\\npgsql.8.0.0.nupkg.sha512",
     "C:\\Users\\THUNDEROBOT\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.0\\npgsql.entityframeworkcore.postgresql.8.0.0.nupkg.sha512",
+    "C:\\Users\\THUNDEROBOT\\.nuget\\packages\\questpdf\\2026.5.0\\questpdf.2026.5.0.nupkg.sha512",
     "C:\\Users\\THUNDEROBOT\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.24\\microsoft.windowsdesktop.app.ref.8.0.24.nupkg.sha512",
     "C:\\Users\\THUNDEROBOT\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.24\\microsoft.netcore.app.ref.8.0.24.nupkg.sha512",
     "C:\\Users\\THUNDEROBOT\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.24\\microsoft.aspnetcore.app.ref.8.0.24.nupkg.sha512",

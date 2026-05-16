@@ -22,19 +22,7 @@
     <Compile Update="View\AdminView\Controls\AdminSectionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\VisitorView\Controls\ViewExhibitControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\VisitorView\Controls\VisitorControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\VisitorView\Controls\VisitorSectionControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="View\HelloForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="View\VisitorView\VisitorForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

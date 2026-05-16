@@ -9,8 +9,11 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
     public partial class AdminForm : Form
     {
         private readonly ExhibitController _controller;
+        
         private readonly AdminControl _control;
+        
         private AddExhibitControl _addControl;
+        
         private EditExhibitControl _editControl;
 
         /// <summary>
