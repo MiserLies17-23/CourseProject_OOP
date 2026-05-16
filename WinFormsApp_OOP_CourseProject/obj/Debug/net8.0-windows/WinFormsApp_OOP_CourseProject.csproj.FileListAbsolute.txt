@@ -81,3 +81,5 @@ C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\bin\Debug\net8.0-windows\runtimes\win-x86\native\libwinpthread-1.dll
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\bin\Debug\net8.0-windows\runtimes\win-x86\native\qpdf.dll
 C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\bin\Debug\net8.0-windows\runtimes\win-x86\native\zlib1.dll
+C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.AdminView.Controls.HelpControls.FilterControl.resources
+C:\Users\THUNDEROBOT\source\repos\WinFormsApp_OOP_CourseProject\WinFormsApp_OOP_CourseProject\obj\Debug\net8.0-windows\WinFormsApp_OOP_CourseProject.View.AdminView.Controls.HelpControls.SearchControl.resources

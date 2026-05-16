@@ -29,20 +29,6 @@
         private void InitializeComponent()
         {
             SectionDataGridView = new DataGridView();
-            SectionNameLabel = new Label();
-            ExhibitSearchPanel = new Panel();
-            ClearButton = new Button();
-            ValueLabel = new Label();
-            CriteriaValueTextBox = new TextBox();
-            CriteriaLabel = new Label();
-            CriteriaComboBox = new ComboBox();
-            SearchButton = new Button();
-            ExhibitSearchLabel = new Label();
-            BackButton = new Button();
-            AddButton = new Button();
-            ExhibitsLabel = new Label();
-            DeleteAllButton = new Button();
-            SaveButton = new Button();
             IdColumn = new DataGridViewTextBoxColumn();
             NameColumn = new DataGridViewTextBoxColumn();
             AgeColumn = new DataGridViewTextBoxColumn();
@@ -50,8 +36,16 @@
             DiscriptionColumn = new DataGridViewTextBoxColumn();
             EditButtonColumn = new DataGridViewButtonColumn();
             DeleteButtonColumn = new DataGridViewButtonColumn();
+            SectionNameLabel = new Label();
+            ExhibitSearchFilterPanel = new Panel();
+            BackButton = new Button();
+            AddButton = new Button();
+            ExhibitsLabel = new Label();
+            DeleteAllButton = new Button();
+            SaveButton = new Button();
+            SearchFilterTabControl = new TabControl();
             ((System.ComponentModel.ISupportInitialize)SectionDataGridView).BeginInit();
-            ExhibitSearchPanel.SuspendLayout();
+            ExhibitSearchFilterPanel.SuspendLayout();
             SuspendLayout();
             // 
             // SectionDataGridView
@@ -69,155 +63,6 @@
             SectionDataGridView.Size = new Size(744, 198);
             SectionDataGridView.TabIndex = 0;
             SectionDataGridView.CellContentClick += SectionDataGridView_CellContentClick;
-            // 
-            // SectionNameLabel
-            // 
-            SectionNameLabel.AutoSize = true;
-            SectionNameLabel.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            SectionNameLabel.Location = new Point(269, 16);
-            SectionNameLabel.Name = "SectionNameLabel";
-            SectionNameLabel.Size = new Size(158, 25);
-            SectionNameLabel.TabIndex = 1;
-            SectionNameLabel.Text = "Название секции";
-            // 
-            // ExhibitSearchPanel
-            // 
-            ExhibitSearchPanel.BorderStyle = BorderStyle.FixedSingle;
-            ExhibitSearchPanel.Controls.Add(ClearButton);
-            ExhibitSearchPanel.Controls.Add(ValueLabel);
-            ExhibitSearchPanel.Controls.Add(CriteriaValueTextBox);
-            ExhibitSearchPanel.Controls.Add(CriteriaLabel);
-            ExhibitSearchPanel.Controls.Add(CriteriaComboBox);
-            ExhibitSearchPanel.Controls.Add(SearchButton);
-            ExhibitSearchPanel.Controls.Add(ExhibitSearchLabel);
-            ExhibitSearchPanel.Location = new Point(3, 44);
-            ExhibitSearchPanel.Name = "ExhibitSearchPanel";
-            ExhibitSearchPanel.Size = new Size(744, 102);
-            ExhibitSearchPanel.TabIndex = 2;
-            // 
-            // ClearButton
-            // 
-            ClearButton.Location = new Point(605, 40);
-            ClearButton.Name = "ClearButton";
-            ClearButton.Size = new Size(94, 29);
-            ClearButton.TabIndex = 6;
-            ClearButton.Text = "Сбросить";
-            ClearButton.UseVisualStyleBackColor = true;
-            ClearButton.Click += ClearButton_Click;
-            // 
-            // ValueLabel
-            // 
-            ValueLabel.AutoSize = true;
-            ValueLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            ValueLabel.Location = new Point(246, 45);
-            ValueLabel.Name = "ValueLabel";
-            ValueLabel.Size = new Size(77, 20);
-            ValueLabel.TabIndex = 5;
-            ValueLabel.Text = "Значение";
-            // 
-            // CriteriaValueTextBox
-            // 
-            CriteriaValueTextBox.Location = new Point(328, 42);
-            CriteriaValueTextBox.Name = "CriteriaValueTextBox";
-            CriteriaValueTextBox.Size = new Size(125, 27);
-            CriteriaValueTextBox.TabIndex = 4;
-            // 
-            // CriteriaLabel
-            // 
-            CriteriaLabel.AutoSize = true;
-            CriteriaLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            CriteriaLabel.Location = new Point(3, 44);
-            CriteriaLabel.Name = "CriteriaLabel";
-            CriteriaLabel.Size = new Size(77, 20);
-            CriteriaLabel.TabIndex = 3;
-            CriteriaLabel.Text = "Критерий";
-            // 
-            // CriteriaComboBox
-            // 
-            CriteriaComboBox.FormattingEnabled = true;
-            CriteriaComboBox.Items.AddRange(new object[] { "Id", "Название", "Возраст", "Дата обнаружения" });
-            CriteriaComboBox.Location = new Point(86, 41);
-            CriteriaComboBox.Name = "CriteriaComboBox";
-            CriteriaComboBox.Size = new Size(151, 28);
-            CriteriaComboBox.TabIndex = 2;
-            // 
-            // SearchButton
-            // 
-            SearchButton.BackColor = SystemColors.MenuHighlight;
-            SearchButton.ForeColor = SystemColors.ButtonFace;
-            SearchButton.Location = new Point(488, 41);
-            SearchButton.Name = "SearchButton";
-            SearchButton.Size = new Size(94, 29);
-            SearchButton.TabIndex = 1;
-            SearchButton.Text = "Найти";
-            SearchButton.UseVisualStyleBackColor = false;
-            SearchButton.Click += SearchButton_Click;
-            // 
-            // ExhibitSearchLabel
-            // 
-            ExhibitSearchLabel.AutoSize = true;
-            ExhibitSearchLabel.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            ExhibitSearchLabel.Location = new Point(271, 11);
-            ExhibitSearchLabel.Name = "ExhibitSearchLabel";
-            ExhibitSearchLabel.Size = new Size(145, 23);
-            ExhibitSearchLabel.TabIndex = 0;
-            ExhibitSearchLabel.Text = "Поиск экспоната";
-            // 
-            // BackButton
-            // 
-            BackButton.Location = new Point(3, 418);
-            BackButton.Name = "BackButton";
-            BackButton.Size = new Size(94, 29);
-            BackButton.TabIndex = 3;
-            BackButton.Text = "Выход";
-            BackButton.UseVisualStyleBackColor = true;
-            BackButton.Click += BackButton_Click;
-            // 
-            // AddButton
-            // 
-            AddButton.BackColor = SystemColors.MenuHighlight;
-            AddButton.ForeColor = SystemColors.ButtonFace;
-            AddButton.Location = new Point(294, 392);
-            AddButton.Name = "AddButton";
-            AddButton.Size = new Size(94, 29);
-            AddButton.TabIndex = 4;
-            AddButton.Text = "Добавить";
-            AddButton.UseVisualStyleBackColor = false;
-            AddButton.Click += AddButton_Click;
-            // 
-            // ExhibitsLabel
-            // 
-            ExhibitsLabel.AutoSize = true;
-            ExhibitsLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            ExhibitsLabel.Location = new Point(269, 157);
-            ExhibitsLabel.Name = "ExhibitsLabel";
-            ExhibitsLabel.Size = new Size(144, 20);
-            ExhibitsLabel.TabIndex = 5;
-            ExhibitsLabel.Text = "Список экспонатов";
-            // 
-            // DeleteAllButton
-            // 
-            DeleteAllButton.BackColor = Color.Red;
-            DeleteAllButton.ForeColor = SystemColors.ButtonFace;
-            DeleteAllButton.Location = new Point(588, 392);
-            DeleteAllButton.Name = "DeleteAllButton";
-            DeleteAllButton.Size = new Size(159, 29);
-            DeleteAllButton.TabIndex = 6;
-            DeleteAllButton.Text = "Очистить таблицу";
-            DeleteAllButton.UseVisualStyleBackColor = false;
-            DeleteAllButton.Click += DeleteAllButton_Click;
-            // 
-            // SaveButton
-            // 
-            SaveButton.BackColor = Color.LimeGreen;
-            SaveButton.ForeColor = SystemColors.ButtonFace;
-            SaveButton.Location = new Point(588, 152);
-            SaveButton.Name = "SaveButton";
-            SaveButton.Size = new Size(159, 29);
-            SaveButton.TabIndex = 7;
-            SaveButton.Text = "Сохранить отчёт";
-            SaveButton.UseVisualStyleBackColor = false;
-            SaveButton.Click += SaveButton_Click;
             // 
             // IdColumn
             // 
@@ -272,6 +117,89 @@
             DeleteButtonColumn.SortMode = DataGridViewColumnSortMode.Automatic;
             DeleteButtonColumn.Width = 90;
             // 
+            // SectionNameLabel
+            // 
+            SectionNameLabel.AutoSize = true;
+            SectionNameLabel.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            SectionNameLabel.Location = new Point(294, 0);
+            SectionNameLabel.Name = "SectionNameLabel";
+            SectionNameLabel.Size = new Size(158, 25);
+            SectionNameLabel.TabIndex = 1;
+            SectionNameLabel.Text = "Название секции";
+            // 
+            // ExhibitSearchFilterPanel
+            // 
+            ExhibitSearchFilterPanel.BorderStyle = BorderStyle.FixedSingle;
+            ExhibitSearchFilterPanel.Controls.Add(SearchFilterTabControl);
+            ExhibitSearchFilterPanel.Location = new Point(3, 28);
+            ExhibitSearchFilterPanel.Name = "ExhibitSearchFilterPanel";
+            ExhibitSearchFilterPanel.Size = new Size(744, 118);
+            ExhibitSearchFilterPanel.TabIndex = 2;
+            // 
+            // BackButton
+            // 
+            BackButton.Location = new Point(3, 418);
+            BackButton.Name = "BackButton";
+            BackButton.Size = new Size(94, 29);
+            BackButton.TabIndex = 3;
+            BackButton.Text = "Выход";
+            BackButton.UseVisualStyleBackColor = true;
+            BackButton.Click += BackButton_Click;
+            // 
+            // AddButton
+            // 
+            AddButton.BackColor = SystemColors.MenuHighlight;
+            AddButton.ForeColor = SystemColors.ButtonFace;
+            AddButton.Location = new Point(328, 392);
+            AddButton.Name = "AddButton";
+            AddButton.Size = new Size(94, 29);
+            AddButton.TabIndex = 4;
+            AddButton.Text = "Добавить";
+            AddButton.UseVisualStyleBackColor = false;
+            AddButton.Click += AddButton_Click;
+            // 
+            // ExhibitsLabel
+            // 
+            ExhibitsLabel.AutoSize = true;
+            ExhibitsLabel.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            ExhibitsLabel.Location = new Point(308, 161);
+            ExhibitsLabel.Name = "ExhibitsLabel";
+            ExhibitsLabel.Size = new Size(144, 20);
+            ExhibitsLabel.TabIndex = 5;
+            ExhibitsLabel.Text = "Список экспонатов";
+            // 
+            // DeleteAllButton
+            // 
+            DeleteAllButton.BackColor = Color.Red;
+            DeleteAllButton.ForeColor = SystemColors.ButtonFace;
+            DeleteAllButton.Location = new Point(588, 392);
+            DeleteAllButton.Name = "DeleteAllButton";
+            DeleteAllButton.Size = new Size(159, 29);
+            DeleteAllButton.TabIndex = 6;
+            DeleteAllButton.Text = "Очистить таблицу";
+            DeleteAllButton.UseVisualStyleBackColor = false;
+            DeleteAllButton.Click += DeleteAllButton_Click;
+            // 
+            // SaveButton
+            // 
+            SaveButton.BackColor = Color.LimeGreen;
+            SaveButton.ForeColor = SystemColors.ButtonFace;
+            SaveButton.Location = new Point(588, 152);
+            SaveButton.Name = "SaveButton";
+            SaveButton.Size = new Size(159, 29);
+            SaveButton.TabIndex = 7;
+            SaveButton.Text = "Сохранить отчёт";
+            SaveButton.UseVisualStyleBackColor = false;
+            SaveButton.Click += SaveButton_Click;
+            // 
+            // SearchFilterTabControl
+            // 
+            SearchFilterTabControl.Location = new Point(-1, -1);
+            SearchFilterTabControl.Name = "SearchFilterTabControl";
+            SearchFilterTabControl.SelectedIndex = 0;
+            SearchFilterTabControl.Size = new Size(744, 118);
+            SearchFilterTabControl.TabIndex = 0;
+            // 
             // AdminSectionControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -281,15 +209,14 @@
             Controls.Add(ExhibitsLabel);
             Controls.Add(AddButton);
             Controls.Add(BackButton);
-            Controls.Add(ExhibitSearchPanel);
+            Controls.Add(ExhibitSearchFilterPanel);
             Controls.Add(SectionNameLabel);
             Controls.Add(SectionDataGridView);
             Name = "AdminSectionControl";
             Size = new Size(750, 450);
             Load += MuseumSectionControl_Load;
             ((System.ComponentModel.ISupportInitialize)SectionDataGridView).EndInit();
-            ExhibitSearchPanel.ResumeLayout(false);
-            ExhibitSearchPanel.PerformLayout();
+            ExhibitSearchFilterPanel.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -298,16 +225,9 @@
 
         private DataGridView SectionDataGridView;
         private Label SectionNameLabel;
-        private Panel ExhibitSearchPanel;
-        private Button SearchButton;
-        private Label ExhibitSearchLabel;
+        private Panel ExhibitSearchFilterPanel;
         private Button BackButton;
         private Button AddButton;
-        private Button ClearButton;
-        private Label ValueLabel;
-        private TextBox CriteriaValueTextBox;
-        private Label CriteriaLabel;
-        private ComboBox CriteriaComboBox;
         private Label ExhibitsLabel;
         private Button DeleteAllButton;
         private Button SaveButton;
@@ -318,5 +238,6 @@
         private DataGridViewTextBoxColumn DiscriptionColumn;
         private DataGridViewButtonColumn EditButtonColumn;
         private DataGridViewButtonColumn DeleteButtonColumn;
+        private TabControl SearchFilterTabControl;
     }
 }

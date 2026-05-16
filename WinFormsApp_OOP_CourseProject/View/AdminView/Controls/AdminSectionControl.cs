@@ -1,22 +1,19 @@
-﻿using System.Text;
-using WinFormsApp_OOP_CourseProject.Controller;
+﻿using WinFormsApp_OOP_CourseProject.Controller;
 using WinFormsApp_OOP_CourseProject.DTO;
 using WinFormsApp_OOP_CourseProject.Model;
 using WinFormsApp_OOP_CourseProject.Utils;
+using WinFormsApp_OOP_CourseProject.View.AdminView.Controls.HelpControls;
 
 namespace WinFormsApp_OOP_CourseProject.View.Controls
 {
     public partial class AdminSectionControl : UserControl
     {
-
         private readonly ExhibitController _controller;
-
         private readonly SectionEnum _section;
+        private List<ExhibitDTO> _allExhibits;
 
         public event Action<SectionEnum>? AddButtonEvent;
-
         public event Action<int>? ChangeButtonEvent;
-
         public event Action? CloseButtonEvent;
 
         public AdminSectionControl(ExhibitController controller, SectionEnum section)
@@ -24,18 +21,62 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             InitializeComponent();
             _controller = controller;
             _section = section;
+            _allExhibits = new List<ExhibitDTO>();
         }
 
         private async void MuseumSectionControl_Load(object sender, EventArgs e)
         {
-            await LoadAllExhibitsAsync();
+            try
+            {
+                await LoadAllExhibitsAsync();
+                LoadSearchFilterControl();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка загрузки формы", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadSearchFilterControl()
+        {
+            SearchFilterTabControl.TabPages.Clear();
+
+            var searchControl = new SearchControl();
+            searchControl.SearchButtonEvent += async (int criteria, string value) =>
+            {
+                await Search(criteria, value);
+            };
+            searchControl.ClearButtonEvent += async () =>
+            {
+                await LoadAllExhibitsAsync();
+            };
+            searchControl.Dock = DockStyle.Fill;
+
+            var searchTabPage = new TabPage("Поиск");
+            searchTabPage.Controls.Add(searchControl);
+
+            var filterControl = new FilterControl();
+            filterControl.Dock = DockStyle.Fill;
+            filterControl.FilterButtonEvent += async (int criteria, int type) =>
+            {
+                await Filter(criteria, type);
+            };
+            filterControl.ClearButtonEvent += async () =>
+            {
+                await LoadAllExhibitsAsync();
+            };
+
+            var filterTabPage = new TabPage("Фильтрация");
+            filterTabPage.Controls.Add(filterControl);
+
+            SearchFilterTabControl.TabPages.Add(searchTabPage);
+            SearchFilterTabControl.TabPages.Add(filterTabPage);
         }
 
         private async Task LoadAllExhibitsAsync()
         {
-            var exhibits = await _controller.GetBySectionAsync(_section);
-
-            LoadExhibitsByList(exhibits);
+            _allExhibits = await _controller.GetBySectionAsync(_section);
+            LoadExhibitsByList(_allExhibits);
         }
 
         private void LoadExhibitsByList(List<ExhibitDTO> exhibits)
@@ -55,40 +96,39 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             }
         }
 
-        private async void SearchButton_Click(object sender, EventArgs e)
+        private async Task Search(int criteria, string value)
         {
             try
             {
-                if (CriteriaComboBox.SelectedIndex == 0)
+                switch (criteria)
                 {
-                    if (!int.TryParse(CriteriaValueTextBox.Text, out int id))
-                        throw new ArgumentException("Id должен быть числом!");
+                    case 0:
+                        if (!int.TryParse(value, out int id))
+                            throw new ArgumentException("ID должен быть числом!");
+                        var exhibit = await _controller.GetByIdAsync(id);
+                        var list = exhibit != null ? new List<ExhibitDTO> { exhibit } : new List<ExhibitDTO>();
+                        LoadExhibitsByList(list);
+                        break;
 
-                    var exhibits = (List<ExhibitDTO>)[await _controller.GetByIdAsync(id)];
+                    case 1:
+                        var exhibitsByName = await _controller.GetByNameAsync(value);
+                        LoadExhibitsByList(exhibitsByName);
+                        break;
 
-                    LoadExhibitsByList(exhibits);
-                }
-                if (CriteriaComboBox.SelectedIndex == 1)
-                {
-                    var exhibits = await _controller.GetByNameAsync(CriteriaValueTextBox.Text);
+                    case 2:
+                        if (!int.TryParse(value, out int age))
+                            throw new ArgumentException("Возраст должен быть числом!");
+                        var exhibitsByAge = await _controller.GetByAgeAsync(age);
+                        LoadExhibitsByList(exhibitsByAge);
+                        break;
 
-                    LoadExhibitsByList(exhibits);
-                }
-                if (CriteriaComboBox.SelectedIndex == 2)
-                {
-                    if (!int.TryParse(CriteriaValueTextBox.Text, out int age))
-                        throw new ArgumentException("Id должен быть числом!");
+                    case 3:
+                        var exhibitsByDate = await _controller.GetByDateAsync(value);
+                        LoadExhibitsByList(exhibitsByDate);
+                        break;
 
-                    var exhibits = await _controller.GetByAgeAsync(age);
-
-                    LoadExhibitsByList(exhibits);
-
-                }
-                if (CriteriaComboBox.SelectedIndex == 3)
-                {
-                    var exhibits = await _controller.GetByDateAsync(CriteriaValueTextBox.Text);
-
-                    LoadExhibitsByList(exhibits);
+                    default:
+                        throw new ArgumentException("Неизвестный критерий поиска");
                 }
             }
             catch (Exception ex)
@@ -97,12 +137,41 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             }
         }
 
-        private async void ClearButton_Click(object sender, EventArgs e)
+        private async Task Filter(int criteria, int type)
         {
-            CriteriaComboBox.SelectedItem = null;
-            CriteriaValueTextBox.Text = "";
+            switch (criteria)
+            {
+                case 0:
+                    if (type == 0)
+                        await LoadAllExhibitsAsync();
+                    else
+                        LoadExhibitsByList([.. _allExhibits.OrderByDescending(e => e.Id)]);
+                    break;
 
-            await LoadAllExhibitsAsync();
+                case 1:
+                    var sortedByName = type == 0
+                        ? [.. _allExhibits.OrderBy(e => e.Name)]
+                        : _allExhibits.OrderByDescending(e => e.Name).ToList();
+                    LoadExhibitsByList(sortedByName);
+                    break;
+
+                case 2:
+                    var sortedByAge = type == 0
+                        ? [.. _allExhibits.OrderBy(e => e.Age)]
+                        : _allExhibits.OrderByDescending(e => e.Age).ToList();
+                    LoadExhibitsByList(sortedByAge);
+                    break;
+
+                case 3:
+                    var sortedByDate = type == 0
+                        ? [.. _allExhibits.OrderBy(e => e.DateOfDiscovery)]
+                        : _allExhibits.OrderByDescending(e => e.DateOfDiscovery).ToList();
+                    LoadExhibitsByList(sortedByDate);
+                    break;
+
+                default:
+                    throw new ArgumentException("Неизвестный критерий фильтрации");
+            }
         }
 
         private async void SaveButton_Click(object sender, EventArgs e)
@@ -125,12 +194,9 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
             try
             {
                 Cursor = Cursors.WaitCursor;
-
-                var exhibits = await _controller.GetBySectionAsync(_section);
-
-                await Task.Run(() => PDFManager.ConvertToPDF(_section, exhibits, saveDialog.FileName));
-
-                MessageBox.Show($"PDF отчёт сохранён:\n{Path.GetFileName(saveDialog.FileName)}\n\nЗаписей: {exhibits.Count}",
+                //var exhibits = await _controller.GetBySectionAsync(_section);
+                await Task.Run(() => PDFManager.ConvertToPDF(_section, _allExhibits, saveDialog.FileName));
+                MessageBox.Show($"PDF отчёт сохранён:\n{Path.GetFileName(saveDialog.FileName)}\n\nЗаписей: {_allExhibits.Count}",
                     "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -178,6 +244,7 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
         {
             AddButtonEvent?.Invoke(_section);
         }
+
         private async void DeleteAllButton_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Вы действительно хотите удалить все экспонаты данной секции?",
@@ -197,7 +264,5 @@ namespace WinFormsApp_OOP_CourseProject.View.Controls
         {
             CloseButtonEvent?.Invoke();
         }
-
-        
     }
 }
